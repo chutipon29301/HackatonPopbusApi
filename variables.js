@@ -1,34 +1,178 @@
 module.exports = {
-    station: [
-        ['Salaprakeaw', 13.735581, 100.531774, 1, 2, 3, 4, 5, 6],
-        ['Faculty of Political Science', 13.734346, 100.532809, 1, 0, 3, 4, 0, 0],
-        ['Patumwan Demonstration School', 13.739323, 100.534902, 1, 0, 0, 4, 0, 0],
-        ['Faculty of Veterinary Science', 13.741897, 100.535293, 1, 0, 0, 4, 0, 0],
-        ['Chaloemphao Junction', 13.744799, 100.535741, 1, 0, 0, 4, 0, 0],
-        ['Lido', 13.74582, 100.532442, 1, 0, 0, 4, 0, 0],
-        ['MBK Center', 13.7437, 100.530533, 1, 0, 0, 4, 0, 0],
-        ['Triamudom Suksa School', 13.740412, 100.530008, 1, 0, 0, 4, 0, 0],
-        ['Faculty of Architecture', 13.739439, 100.531055, 1, 2, 3, 4, 5, 6],
-        ['Faculty of Arts', 13.739039, 100.532986, 1, 2, 3, 4, 5, 6],
-        ['Faculty of Engineering', 13.737499, 100.532584, 1, 2, 3, 4, 5, 6],
-        ['Faculty of Science', 13.737706, 100.530546, 0, 2, 3, 0, 0, 0],
-        ['Faculty of Education', 13.737995, 100.528593, 0, 2, 0, 4, 0, 0],
-        ['Sport Complex', 13.738187, 100.526601, 0, 2, 0, 4, 0, 6],
-        ['Charmchuri 9 Building', 13.736445, 100.526296, 0, 2, 0, 4, 0, 6],
-        ['CU Dharma Centre', 13.739604, 100.526243, 0, 2, 0, 0, 0, 0],
-        ['Vidhayapattana Building', 13.741907, 100.52766, 0, 2, 0, 0, 0, 0],
-        ['Metallic and Material Research Institute PetroChemical College', 13.743236, 100.527311, 0, 2, 0, 0, 0, 0],
-        ['Faculty of Sports Science', 13.743887, 100.527982, 0, 2, 0, 0, 0, 0],
-        ['CU Dormitory', 13.74074, 100.527445, 0, 2, 0, 0, 0, 0],
-        ['CU Office', 13.738911, 100.52943, 0, 2, 0, 4, 5, 6],
-        ['Pop Bus Garage', 13.736331, 100.52514, 0, 2, 0, 0, 0, 0],
-        ['U-Center', 13.735313, 100.527302, 0, 0, 0, 4, 0, 6],
-        ['Faculty of Political Science', 13.734242, 100.534033, 1, 0, 3, 4, 0, 0],
-        ['Faculty of Law', 13.735137, 100.5284127, 0, 0, 0, 4, 0, 6],
-        ['Faculty of Medicine', 13.7329026109075, 100.535379052162, 0, 0, 3, 0, 0, 0],
-        ['Mahitaladhibesra Building', 13.734586, 100.531329, 0, 2, 0, 0, 0, 0],
-        ['Mahamakut Building', 13.735732, 100.530825, 0, 2, 0, 0, 0, 0],
-        ['CU Terrace', 13.740985, 100.525227, 0, 0, 0, 0, 5, 6]
+    station: [{
+            name: 'Salaprakeaw',
+            latitude: 13.735581,
+            longitude: 100.531774,
+            line: [1, 2, 3, 4, 5, 6]
+        },
+        {
+            name: 'Faculty of Political Science',
+            latitude: 13.734346,
+            longitude: 100.532809,
+            line: [1, 0, 3, 4, 0, 0]
+        },
+        {
+            name: 'Patumwan Demonstration School',
+            latitude: 13.739323,
+            longitude: 100.534902,
+            line: [1, 0, 0, 4, 0, 0]
+        },
+        {
+            name: 'Faculty of Veterinary Science',
+            latitude: 13.741897,
+            longitude: 100.535293,
+            line: [1, 0, 0, 4, 0, 0]
+        },
+        {
+            name: 'Chaloemphao Junction',
+            latitude: 13.744799,
+            longitude: 100.535741,
+            line: [1, 0, 0, 4, 0, 0]
+        },
+        {
+            name: 'Lido',
+            latitude: 13.74582,
+            longitude: 100.532442,
+            line: [1, 0, 0, 4, 0, 0]
+        },
+        {
+            name: 'MBK Center',
+            latitude: 13.7437,
+            longitude: 100.530533,
+            line: [1, 0, 0, 4, 0, 0]
+        },
+        {
+            name: 'Triamudom Suksa School',
+            latitude: 13.740412,
+            longitude: 100.530008,
+            line: [1, 0, 0, 4, 0, 0]
+        },
+        {
+            name: 'Faculty of Architecture',
+            latitude: 13.739439,
+            longitude: 100.531055,
+            line: [1, 2, 3, 4, 5, 6]
+        },
+        {
+            name: 'Faculty of Arts',
+            latitude: 13.739039,
+            longitude: 100.532986,
+            line: [1, 2, 3, 4, 5, 6]
+        },
+        {
+            name: 'Faculty of Engineering',
+            latitude: 13.737499,
+            longitude: 100.532584,
+            line: [1, 2, 3, 4, 5, 6]
+        },
+        {
+            name: 'Faculty of Science',
+            latitude: 13.737706,
+            longitude: 100.530546,
+            line: [0, 2, 3, 0, 0, 0]
+        },
+        {
+            name: 'Faculty of Education',
+            latitude: 13.737995,
+            longitude: 100.528593,
+            line: [0, 2, 0, 4, 0, 0]
+        },
+        {
+            name: 'Sport Complex',
+            latitude: 13.738187,
+            longitude: 100.526601,
+            line: [0, 2, 0, 4, 0, 6]
+        },
+        {
+            name: 'Charmchuri 9 Building',
+            latitude: 13.736445,
+            longitude: 100.526296,
+            line: [0, 2, 0, 4, 0, 6]
+        },
+        {
+            name: 'CU Dharma Centre',
+            latitude: 13.739604,
+            longitude: 100.526243,
+            line: [0, 2, 0, 0, 0, 0]
+        },
+        {
+            name: 'Vidhayapattana Building',
+            latitude: 13.741907,
+            longitude: 100.52766,
+            line: [0, 2, 0, 0, 0, 0]
+        },
+        {
+            name: 'Metallic and Material Research Institute PetroChemical College',
+            latitude: 13.743236,
+            longitude: 100.527311,
+            line: [0, 2, 0, 0, 0, 0]
+        },
+        {
+            name: 'Faculty of Sports Science',
+            latitude: 13.743887,
+            longitude: 100.527982,
+            line: [0, 2, 0, 0, 0, 0]
+        },
+        {
+            name: 'CU Dormitory',
+            latitude: 13.74074,
+            longitude: 100.527445,
+            line: [0, 2, 0, 0, 0, 0]
+        },
+        {
+            name: 'CU Office',
+            latitude: 13.738911,
+            longitude: 100.52943,
+            line: [0, 2, 0, 4, 5, 6]
+        },
+        {
+            name: 'Pop Bus Garage',
+            latitude: 13.736331,
+            longitude: 100.52514,
+            line: [0, 2, 0, 0, 0, 0]
+        },
+        {
+            name: 'U-Center',
+            latitude: 13.735313,
+            longitude: 100.527302,
+            line: [0, 0, 0, 4, 0, 6]
+        },
+        {
+            name: 'Faculty of Political Science',
+            latitude: 13.734242,
+            longitude: 100.534033,
+            line: [1, 0, 3, 4, 0, 0]
+        },
+        {
+            name: 'Faculty of Law',
+            latitude: 13.735137,
+            longitude: 100.5284127,
+            line: [0, 0, 0, 4, 0, 6]
+        },
+        {
+            name: 'Faculty of Medicine',
+            latitude: 13.7329026109075,
+            longitude: 100.535379052162,
+            line: [0, 0, 3, 0, 0, 0]
+        },
+        {
+            name: 'Mahitaladhibesra Building',
+            latitude: 13.734586,
+            longitude: 100.531329,
+            line: [0, 2, 0, 0, 0, 0]
+        },
+        {
+            name: 'Mahamakut Building',
+            latitude: 13.735732,
+            longitude: 100.530825,
+            line: [0, 2, 0, 0, 0, 0]
+        },
+        {
+            name: 'CU Terrace',
+            latitude: 13.740985,
+            longitude: 100.525227,
+            line: [0, 0, 0, 0, 5, 6]
+        }
     ],
     routeCoordinates_1: [
         //START AT HENRI DUNANT INTERSECTION
