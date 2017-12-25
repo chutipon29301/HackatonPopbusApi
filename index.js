@@ -2,7 +2,9 @@ var MongoClient = require('mongodb').MongoClient;
 var express = require('express');
 var bodyParser = require('body-parser');
 var ObjectID = require('mongodb').ObjectID;
-var rpn = require('request-promise-native');
+var request = require('request-promise-native');
+
+var app = express();
 
 app.listen(3000);
 app.use(bodyParser.json());
