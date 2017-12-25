@@ -1,0 +1,27 @@
+extends htmlTemplate.pug
+block breadcrumb
+    li.breadcrumb-item.active Trend
+block content
+    .container
+        //- +requestBox('Add Genre', 'addGenreForm', 'addGenre', 'genreID', 'image')
+        //- +requestBox('Delete Genre', 'deleteGenreForm', 'deleteGenre', 'genreID')
+        //- +requestBox('Edit Genre', 'editGenreForm', 'editGenre', 'genreID', 'image')
+
+block script
+    script(src='js/request.js')
+
+
+mixin requestBox(header, id, sendid, ...params)
+    .row
+        .col-lg-8
+            .card.mb-3
+                .card-header=header
+                .card-body
+                    .row
+                        form(id=id)
+                            each param in params
+                                .form-group.row
+                                    label.col-sm-4.col-form-label(for=param)=param
+                                    .col-sm-8
+                                        input.form-control(type='text', placeholder=param, name=param)
+                            button(id=sendid).btn.btn-primary Submit
