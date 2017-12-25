@@ -18,6 +18,20 @@ app.use(function (req, res, next) {
     next();
 });
 app.use(express.static('public'));
+app.set('view engine', 'pug');
+
+app.get('/', function (req, res) {
+    res.render('home', {});
+});
+
+app.get('/home', function (req, res) {
+    res.render('home', {});
+});
+
+app.get('/test', function (req, res) {
+    res.render('htmlTemplate', {});
+});
+
 
 MongoClient.connect('mongodb://127.0.0.1:27017/Popbus', function (err, db) {
     if (err) {
