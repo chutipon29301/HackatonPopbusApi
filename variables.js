@@ -750,7 +750,7 @@ module.exports = {
         },
         //END
     ],
-    routeCoordinates_5 = [{
+    routeCoordinates_5: [{
             latitude: 13.742356,
             longitude: 100.525878
         },
@@ -850,7 +850,7 @@ module.exports = {
         //END CRUVE
         //END
     ],
-    routeCoordinates_6 = [{
+    routeCoordinates_6: [{
             latitude: 13.742356,
             longitude: 100.525808
         },
@@ -956,5 +956,30 @@ module.exports = {
         }
         //END CRUVE
         //END
+    ],
+    time_consume: [
+        30,
+        80,
+        40,
+        40,
+        25,
+        30
+    ],
+    time_break_per_stop: [
+        3,
+        2,
+        2,
+        3,
+        2,
+        2
+    ],
+    time_break_at_terminal: [
+        3,
+        2,
+        2,
+        3,
+        2,
+        2
     ]
+
 };

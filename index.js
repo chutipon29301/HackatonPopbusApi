@@ -2,6 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request-promise-native');
 var io = require('socket.io')(http);
+var temp = require('./calculator');
+var busPosition = require('./route');
 
 var app = express();
 
@@ -40,4 +42,12 @@ app.get('/home', function (req, res) {
 
 app.get('/test', function (req, res) {
     res.render('htmlTemplate', {});
+});
+
+app.get('/getTemp', function(req,res){
+    res.status(200).send(temp());
+});
+
+app.get('/getPos', function(req,res){
+    res.status(200).send(busPosition.calculateSpeed());
 });
