@@ -1,4 +1,4 @@
-var variables = require('./variables');
+var variables = require('./constants');
 var schedule = require('node-schedule');
 var math = require('mathjs');
 
