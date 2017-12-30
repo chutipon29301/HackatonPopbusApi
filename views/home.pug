@@ -1,3 +1,15 @@
 extends htmlTemplate.pug
+block style
+    style.
+        #map {
+            width: 100%;
+            height: 1000px;
+            background-color: grey;
+        }
+    script(src='http://maps.google.com/maps/api/js?sensor=false', type='text/javascript')
+
 block content
-    | Welcome
+    .container
+        #map
+block script
+    script(src="/js/home.js")

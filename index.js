@@ -1,7 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request-promise-native');
-var io = require('socket.io')(http);
 var temp = require('./calculator');
 var busPosition = require('./route');
 
@@ -23,13 +22,17 @@ app.use(express.static('public'));
 app.set('view engine', 'pug');
 
 var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 http.listen(3000, function () {
-    console.log('Listening on port 3000');
+    console.log('listening on port 3000');
 });
 
 io.on('connection', function (socket) {
-    console.log('A user connected');
+    console.log('a user connected');
+    socket.on('disconnect', function () {
+        console.log('user disconnected');
+    });
 });
 
 app.get('/', function (req, res) {
@@ -40,14 +43,10 @@ app.get('/home', function (req, res) {
     res.render('home', {});
 });
 
-app.get('/test', function (req, res) {
-    res.render('htmlTemplate', {});
-});
-
-app.get('/getTemp', function(req,res){
+app.get('/getTemp', function (req, res) {
     res.status(200).send(temp());
 });
 
-app.get('/getPos', function(req,res){
+app.get('/getPos', function (req, res) {
     res.status(200).send(busPosition.calculateSpeed());
 });

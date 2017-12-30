@@ -213,47 +213,47 @@ var calculateSpeed = function () {
     return speed;
 }
 
-var busPositionUpdate = schedule.scheduleJob('* * * * * *', function () {
-    var buses = [
-        bus_1,
-        bus_2,
-        bus_3,
-        bus_4,
-        bus_5,
-        bus_6
-    ];
+// var busPositionUpdate = schedule.scheduleJob('* * * * * *', function () {
+//     var buses = [
+//         bus_1,
+//         bus_2,
+//         bus_3,
+//         bus_4,
+//         bus_5,
+//         bus_6
+//     ];
 
-    var route = [
-        variables.routeCoordinates_1,
-        variables.routeCoordinates_2,
-        variables.routeCoordinates_3,
-        variables.routeCoordinates_4,
-        variables.routeCoordinates_5,
-        variables.routeCoordinates_6
-    ];
+//     var route = [
+//         variables.routeCoordinates_1,
+//         variables.routeCoordinates_2,
+//         variables.routeCoordinates_3,
+//         variables.routeCoordinates_4,
+//         variables.routeCoordinates_5,
+//         variables.routeCoordinates_6
+//     ];
 
-    for (let i = 0; i < 1; i++) {
-        for (let j = 0; j < buses[i].buses.length; j++) {
-            if (buses[i].counter > variables.time_delay[i] * j * 60) {
-                buses[i].buses[j].cumulative_distance += calculateSpeed()[i];
-                startPos = math.matrix([route[i][buses[i].buses[j].current_position].latitude, route[i][buses[i].buses[j].current_position].longitude]);
-                endPos = math.matrix([route[i][buses[i].buses[j].current_position + 1].latitude, route[i][buses[i].buses[j].current_position + 1].longitude]);
-                var direction = math.add(endPos, math.multiply(startPos, -1))
-                var distance = math.add(math.multiply(direction, 1 / (Math.sqrt(Math.pow(route[i][buses[i].buses[j].current_position + 1].latitude, 2) + Math.pow(route[i][buses[i].buses[j].current_position + 1].longitude, 2)))), calculateSpeed()[i] * RAD);
-                buses[i].buses[j].latitude += distance._data[0];
-                buses[i].buses[j].longitude += distance._data[1];
-                console.log('Bus ' + (i + 1) + ' no ' + (j + 1) + ' distance ', buses[i].buses[j]);
-                if (route[i][buses[i].buses[j].latitude] - startPos._data[0] === ((endPos._data[1] - startPos._data[1]) / (endPos._data[0] - endPos._data[0])) * route[i][buses[i].buses[j].longitude - startPos._data[1]]) {
-                    buses[i].buses[j].current_position = (buses[i].buses[j].current_position++) % route[i].length;
-                }
-                var linePass = variables.station.filter(station => {
-                    return station.line.indexOf(i) !== -1;
-                });
-            }
-        }
-        buses[i].counter++;
-    }
-});
+//     for (let i = 0; i < 1; i++) {
+//         for (let j = 0; j < buses[i].buses.length; j++) {
+//             if (buses[i].counter > variables.time_delay[i] * j * 60) {
+//                 buses[i].buses[j].cumulative_distance += calculateSpeed()[i];
+//                 startPos = math.matrix([route[i][buses[i].buses[j].current_position].latitude, route[i][buses[i].buses[j].current_position].longitude]);
+//                 endPos = math.matrix([route[i][buses[i].buses[j].current_position + 1].latitude, route[i][buses[i].buses[j].current_position + 1].longitude]);
+//                 var direction = math.add(endPos, math.multiply(startPos, -1))
+//                 var distance = math.add(math.multiply(direction, 1 / (Math.sqrt(Math.pow(route[i][buses[i].buses[j].current_position + 1].latitude, 2) + Math.pow(route[i][buses[i].buses[j].current_position + 1].longitude, 2)))), calculateSpeed()[i] * RAD);
+//                 buses[i].buses[j].latitude += distance._data[0];
+//                 buses[i].buses[j].longitude += distance._data[1];
+//                 console.log('Bus ' + (i + 1) + ' no ' + (j + 1) + ' distance ', buses[i].buses[j]);
+//                 if (route[i][buses[i].buses[j].latitude] - startPos._data[0] === ((endPos._data[1] - startPos._data[1]) / (endPos._data[0] - endPos._data[0])) * route[i][buses[i].buses[j].longitude - startPos._data[1]]) {
+//                     buses[i].buses[j].current_position = (buses[i].buses[j].current_position++) % route[i].length;
+//                 }
+//                 var linePass = variables.station.filter(station => {
+//                     return station.line.indexOf(i) !== -1;
+//                 });
+//             }
+//         }
+//         buses[i].counter++;
+//     }
+// });
 
 module.exports = {
     calculatePath: calculatePath,
