@@ -4,11 +4,14 @@ var request = require('request-promise-native');
 var temp = require('./calculator');
 var busPosition = require('./route');
 var constants = require('./constants');
+var schedule = require('node-schedule');
 
 var app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -51,16 +54,24 @@ app.get('/test', function (req, res) {
 });
 
 app.get('/get/stations', (req, res) => {
-    res.json({ status: 1, data: constants.station });
+    res.json({
+        status: 1,
+        data: constants.station
+    });
 });
 
 app.get('/get/route', (req, res) => {
     let busnumbers = [1, 2, 3, 4, 5, 6];
     if (busnumbers.indexOf(parseInt(req.query.busnumber)) != -1) {
-        res.json({ status: 1, data: constants['routeCoordinates_' + req.query.busnumber] });
-    }
-    else {
-        res.json({ status: 0, error: "Bus not found" })
+        res.json({
+            status: 1,
+            data: constants['routeCoordinates_' + req.query.busnumber]
+        });
+    } else {
+        res.json({
+            status: 0,
+            error: "Bus not found"
+        })
     }
 });
 
@@ -68,6 +79,14 @@ app.get('/get/temp', function (req, res) {
     res.status(200).send(temp());
 });
 
-app.get('/get/pos', function (req, res) {
+app.get('/get/speed', function (req, res) {
     res.status(200).send(busPosition.calculateSpeed());
+});
+
+app.get('/get/position', function (req, res) {
+    res.status(200).send(busPosition.getCurrentPosition());
+});
+
+var locationUpdater = schedule.scheduleJob('* * * * * *', function () {
+    io.emit('updateLocation','');
 });
