@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Popbus API Explorer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Popbus API Explorer</h1>
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Request</h2>
+                <div class="form-group">
+                    <label for="clientIdField">Client ID:</label>
+                    <input type="text" class="form-control" id="clientIdField">
+                </div>
+                <div class="form-group">
+                    <label for="clientSecretField">Client Secret:</label>
+                    <input type="text" class="form-control" id="clientSecretField">
+                </div>
+                <div class="form-group">
+                    <label for="pathSelect">Endpoint:</label>
+                    <select name="path" id="pathSelect" class="form-control">
+                        <option value="/get/temp/inside">/get/temp/inside</option>
+                        <option value="/get/temp/outside">/get/temp/outside</option>
+                        <option value="/get/stations">/get/stations</option>
+                        <option value="/get/route">/get/route</option>
+                        <option value="/get/speed">/get/speed</option>
+                        <option value="/get/position">/get/position</option>
+                    </select>
+                </div>
+                <div class="form-group" id="busnumberGroup">
+                    <label for="busnumberSelect">Bus Number:</label>
+                    <select name="busnumber" id="busnumberSelect" class="form-control">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                <button class="btn btn-primary btn-block" id="submitBtn">Submit</button>
+            </div>
+            <div class="col-sm-6">
+                <h2>Response</h2>
+                <div class="form-group">
+                    <label for="headArea">Head</label>
+                    <textarea name="head" id="headArea" cols="30" rows="6" class="form-control" readonly></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="bodyArea">Body</label>
+                    <textarea name="body" id="bodyArea" cols="30" rows="10" class="form-control" readonly></textarea>
+                </div>
+                <button class="btn btn-danger btn-block" id="clearBtn">Clear</button>
+            </div>
+        </div>
+    </div>
+    <script>
+    $('#busnumberGroup').hide();
+    $('#pathSelect').change(() => {
+        if ($('#pathSelect').val() == '/get/route') {
+            $('#busnumberGroup').show();
+        }
+        else {
+            $('#busnumberGroup').hide();
+        }
+    });
+    $('#submitBtn').click(() => {
+        let url = $('#pathSelect').val();
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                busnumber: $('#busnumberSelect').val()
+            },
+            beforeSend: (xhr) => {
+                xhr.setRequestHeader('Client-ID', $('#clientIdField').val());
+                xhr.setRequestHeader('Client-Secret', $('#clientSecretField').val());
+            },
+            success: (data, textStatus, request) => {
+                console.log(data);
+                console.log(textStatus);
+                console.log(request);
+                $('#headArea').val(request.getAllResponseHeaders());
+                $('#bodyArea').val(JSON.stringify(data));
+            }
+        });
+    });
+    $('#clearBtn').click(() => {
+        $('#headArea').val('');
+        $('#bodyArea').val('');
+    });
+    </script>
+</body>
+
+</html>

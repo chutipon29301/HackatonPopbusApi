@@ -36,6 +36,7 @@ let tokens = new Array(rawTokens.length);
 rawTokens.forEach(token => {
     let bucket = hashToBucket(token.public);
     tokens[bucket] = token;
+    tokens[bucket].remaining = 60;
 });
 function validate(publicKey, privateKey) {
     let bucket = hashToBucket(publicKey);
@@ -44,4 +45,10 @@ function validate(publicKey, privateKey) {
     }
     return false;
 }
+function refresh() {
+    tokens.forEach(token => {
+        token.remaining = 60;
+    });
+}
 exports.validate = validate;
+exports.refresh = refresh;
