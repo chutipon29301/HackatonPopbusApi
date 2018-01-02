@@ -116,70 +116,11 @@ var bus_4 = {
         }
     ]
 };
-var bus_5 = {
-    counter: 0,
-    buses: [{
-            id: 1,
-            max_weight: 7000,
-            latitude: constants.station[0].latitude,
-            longitude: constants.station[0].longitude,
-            current_position: 0,
-            cumulative_distance: 0
-        },
-        {
-            id: 2,
-            max_weight: 7000,
-            latitude: constants.station[0].latitude,
-            longitude: constants.station[0].longitude,
-            current_position: 0,
-            cumulative_distance: 0
-        },
-        {
-            id: 3,
-            max_weight: 7000,
-            latitude: constants.station[0].latitude,
-            longitude: constants.station[0].longitude,
-            current_position: 0,
-            cumulative_distance: 0
-        }
-    ]
-};
-var bus_6 = {
-    counter: 0,
-    buses: [{
-            id: 1,
-            max_weight: 7000,
-            latitude: constants.station[0].latitude,
-            longitude: constants.station[0].longitude,
-            current_position: 0,
-            cumulative_distance: 0
-        },
-        {
-            id: 2,
-            max_weight: 7000,
-            latitude: constants.station[0].latitude,
-            longitude: constants.station[0].longitude,
-            current_position: 0,
-            cumulative_distance: 0
-        },
-        {
-            id: 3,
-            max_weight: 7000,
-            latitude: constants.station[0].latitude,
-            longitude: constants.station[0].longitude,
-            current_position: 0,
-            cumulative_distance: 0
-        }
-    ]
-};
-
 var buses = [
     bus_1,
     bus_2,
     bus_3,
-    bus_4,
-    bus_5,
-    bus_6
+    bus_4
 ];
 
 var measure = function (lat1, lon1, lat2, lon2) { // generally used geo measurement function
@@ -199,9 +140,7 @@ var calculatePath = function () {
         constants.routeCoordinates_1,
         constants.routeCoordinates_2,
         constants.routeCoordinates_3,
-        constants.routeCoordinates_4,
-        constants.routeCoordinates_5,
-        constants.routeCoordinates_6
+        constants.routeCoordinates_4
     ];
     var allPathMeter = [];
     allPath.map(line => {
@@ -228,9 +167,7 @@ var busPositionUpdate = schedule.scheduleJob('* * * * * *', function () {
         constants.routeCoordinates_1,
         constants.routeCoordinates_2,
         constants.routeCoordinates_3,
-        constants.routeCoordinates_4,
-        constants.routeCoordinates_5,
-        constants.routeCoordinates_6
+        constants.routeCoordinates_4
     ];
 
     for (let i = 0; i < route.length; i++) {
@@ -250,19 +187,19 @@ var busPositionUpdate = schedule.scheduleJob('* * * * * *', function () {
                 var y = endPos.longitude - startPos.longitude;
                 var unitVector = math.matrix([x / math.sqrt(x * x + y * y), y / math.sqrt(x * x + y * y)]);
                 var directionVector = math.matrix([unitVector._data[0] * distance, unitVector._data[1] * distance]);
-                buses[i].buses[j].latitude += directionVector._data[0];
-                buses[i].buses[j].longitude += directionVector._data[1];
+                var linePass = constants.station.filter(station => {
+                    return station.line.indexOf(i) !== -1;
+                });
+                if (isAtStop(linePass, buses[i].buses[j])) {
+                    buses[i].buses[j].latitude += directionVector._data[0] / 10;
+                    buses[i].buses[j].longitude += directionVector._data[1] / 10;
+                } else {
+                    buses[i].buses[j].latitude += directionVector._data[0];
+                    buses[i].buses[j].longitude += directionVector._data[1];
+                }
                 if (isBetween(startPos, buses[i].buses[j], route[i][buses[i].buses[j].current_position])) {
                     buses[i].buses[j].current_position = (buses[i].buses[j].current_position + 1) % route[i].length;
                 }
-
-                // if (route[i][buses[i].buses[j].latitude] - startPos._data[0] === ((endPos._data[1] - startPos._data[1]) / (endPos._data[0] - endPos._data[0])) * route[i][buses[i].buses[j].longitude - startPos._data[1]]) {
-                //     console.log('in');
-                //     buses[i].buses[j].current_position = (buses[i].buses[j].current_position++) % route[i].length;
-                // }
-                // var linePass = constants.station.filter(station => {
-                //     return station.line.indexOf(i) !== -1;
-                // });
             }
         }
         buses[i].counter++;
@@ -275,6 +212,14 @@ function isBetween(startPos, endPos, point) {
     var kAc = math.dot(firstVector, secondVector);
     var kAb = math.dot(firstVector, firstVector);
     return 0 < kAc && kAc < kAb;
+}
+
+function isAtStop(linePass, position) {
+    for (let i = 0; i < linePass.length; i++) {
+        if (math.pow(position.latitude - linePass[i].latitude, 2) + math.pow(position.longitude - linePass[i].longitude, 2) < math.pow(5 * RAD, 2)) {
+            return true;
+        }
+    }
 }
 
 var getCurrentPostion = function () {

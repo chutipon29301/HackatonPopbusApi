@@ -21,11 +21,6 @@ function getLocation() {
     }
     $.get('/get/position', function (data, status) {
         var locations = [];
-        locations.push([
-            't',
-            13.735581,
-            100.531944
-        ]);
         for (let i = 0; i < data.length; i++) {
             for (let j = 0; j < data[i].buses.length; j++) {
                 locations.push([

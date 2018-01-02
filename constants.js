@@ -750,232 +750,19 @@ module.exports = {
         },
         //END
     ],
-    routeCoordinates_5: [{
-            latitude: 13.742356,
-            longitude: 100.525878
-        },
-        {
-            latitude: 13.739790,
-            longitude: 100.525384
-        },
-        {
-            latitude: 13.739537,
-            longitude: 100.527160
-        },
-        {
-            latitude: 13.739982,
-            longitude: 100.527237
-        },
-        {
-            latitude: 13.739620,
-            longitude: 100.529590
-        },
-        {
-            latitude: 13.738804,
-            longitude: 100.529464
-        },
-        {
-            latitude: 13.738773,
-            longitude: 100.529900
-        },
-        {
-            latitude: 13.739703,
-            longitude: 100.530093
-        },
-        //START CURVE BOROM BUILDING
-        {
-            latitude: 13.739219,
-            longitude: 100.532954
-        },
-        {
-            latitude: 13.739069,
-            longitude: 100.533119
-        },
-        {
-            latitude: 13.738973,
-            longitude: 100.533197
-        },
-        {
-            latitude: 13.738973,
-            longitude: 100.533203
-        },
-        //END
-        //START CURVE AKSORN
-        {
-            latitude: 13.738841,
-            longitude: 100.534081
-        },
-        {
-            latitude: 13.738805,
-            longitude: 100.534196
-        },
-        {
-            latitude: 13.738747,
-            longitude: 100.534233
-        },
-        {
-            latitude: 13.738674,
-            longitude: 100.534289
-        },
-        //END
-        //START CURVE OLD AKSORN
-        {
-            latitude: 13.737342,
-            longitude: 100.534060
-        },
-        {
-            latitude: 13.737266,
-            longitude: 100.534024
-        },
-        {
-            latitude: 13.737225,
-            longitude: 100.533992
-        },
-        {
-            latitude: 13.737188,
-            longitude: 100.533954
-        },
-        {
-            latitude: 13.737153,
-            longitude: 100.533901
-        },
-        {
-            latitude: 13.737330,
-            longitude: 100.532158
-        },
-        {
-            latitude: 13.735581,
-            longitude: 100.531944
-        }
-        //END CRUVE
-        //END
-    ],
-    routeCoordinates_6: [{
-            latitude: 13.742356,
-            longitude: 100.525808
-        },
-        {
-            latitude: 13.739670,
-            longitude: 100.525304
-        },
-        {
-            latitude: 13.739407,
-            longitude: 100.527160
-        },
-        {
-            latitude: 13.738342,
-            longitude: 100.526983
-        },
-        {
-            latitude: 13.738384,
-            longitude: 100.526601
-        },
-        {
-            latitude: 13.735356,
-            longitude: 100.526105
-        },
-        {
-            latitude: 13.734934,
-            longitude: 100.528929
-        },
-        {
-            latitude: 13.738904,
-            longitude: 100.529504
-        },
-        {
-            latitude: 13.738923,
-            longitude: 100.529870
-        },
-        {
-            latitude: 13.739823,
-            longitude: 100.530063
-        },
-        {
-            latitude: 13.739329,
-            longitude: 100.532943
-        },
-        {
-            latitude: 13.739189,
-            longitude: 100.533119
-        },
-        {
-            latitude: 13.739073,
-            longitude: 100.533197
-        },
-        {
-            latitude: 13.739073,
-            longitude: 100.533203
-        },
-        //END
-        //START CURVE AKSORN
-        {
-            latitude: 13.738901,
-            longitude: 100.534101
-        },
-        {
-            latitude: 13.738875,
-            longitude: 100.534236
-        },
-        {
-            latitude: 13.738807,
-            longitude: 100.534283
-        },
-        {
-            latitude: 13.738734,
-            longitude: 100.534359
-        },
-        //END
-        //START CURVE OLD AKSORN
-        {
-            latitude: 13.737342,
-            longitude: 100.534160
-        },
-        {
-            latitude: 13.737266,
-            longitude: 100.534124
-        },
-        {
-            latitude: 13.737225,
-            longitude: 100.534092
-        },
-        {
-            latitude: 13.737188,
-            longitude: 100.534054
-        },
-        {
-            latitude: 13.737063,
-            longitude: 100.533901
-        },
-        {
-            latitude: 13.737200,
-            longitude: 100.532288
-        },
-        {
-            latitude: 13.735581,
-            longitude: 100.532044
-        }
-        //END CRUVE
-        //END
-    ],
     time_consume: [
         30,
         80,
         40,
-        40,
-        25,
-        30
+        40
     ],
     time_break_per_stop: [
         3,
         2,
         2,
-        3,
-        2,
-        2
+        3
     ],
     time_break_at_terminal: [
-        15,
-        15,
         15,
         15,
         15,
@@ -985,9 +772,7 @@ module.exports = {
         10,
         15,
         10,
-        10,
-        15,
-        15
+        10
     ]
 
 };
