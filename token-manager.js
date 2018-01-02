@@ -38,9 +38,15 @@ rawTokens.forEach(token => {
     tokens[bucket] = token;
     tokens[bucket].remaining = 60;
 });
-function validate(publicKey, privateKey) {
+function getToken(publicKey) {
     let bucket = hashToBucket(publicKey);
-    if (tokens[bucket] && tokens[bucket].public == publicKey && tokens[bucket].private == privateKey) {
+    if (tokens[bucket] && tokens[bucket].public == publicKey) {
+        return tokens[bucket];
+    }
+}
+function validate(publicKey, privateKey) {
+    let token = getToken(publicKey);
+    if (token && token.private == privateKey) {
         return true;
     }
     return false;
@@ -50,5 +56,14 @@ function refresh() {
         token.remaining = 60;
     });
 }
+function decrement(publicKey, privateKey) {
+    let token = getToken(publicKey);
+    if (token && token.remaining > 0) {
+        token.remaining--;
+        return token.remaining;
+    }
+    return -1;
+}
 exports.validate = validate;
 exports.refresh = refresh;
+exports.decrement = decrement;

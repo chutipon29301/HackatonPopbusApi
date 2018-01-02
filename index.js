@@ -54,7 +54,7 @@ app.get('/test', function (req, res) {
     res.render('htmlTemplate', {});
 });
 
-app.post('/get/temp/inside', (req, res) => {
+app.post('/get/temp/inside', validateRequestToken, (req, res) => {
     res.json({
         status: 1,
         data: temp.getInsideTemp(1000)
@@ -62,7 +62,7 @@ app.post('/get/temp/inside', (req, res) => {
     // TODO Replace with real bus weight
 });
 
-app.post('/get/temp/outside', (req, res) => {
+app.post('/get/temp/outside', validateRequestToken, (req, res) => {
     res.json({
         status: 1,
         data: temp.getOutsideTemp()
@@ -70,18 +70,14 @@ app.post('/get/temp/outside', (req, res) => {
     // TODO Alter between different cars
 });
 
-<<<<<<< HEAD
-app.post('/get/stations', (req, res) => {
-=======
-app.get('/get/stations', (req, res) => {
->>>>>>> 912d0dde9c5445351acbddff4b2e8003bf7930ad
+app.post('/get/stations', validateRequestToken, (req, res) => {
     res.json({
         status: 1,
         data: constants.station
     });
 });
 
-app.post('/get/route', (req, res) => {
+app.post('/get/route', validateRequestToken, (req, res) => {
     let busnumbers = [1, 2, 3, 4];
     if (busnumbers.indexOf(parseInt(req.body.busnumber)) != -1) {
         res.json({
@@ -96,11 +92,11 @@ app.post('/get/route', (req, res) => {
     }
 });
 
-app.post('/get/speed', function (req, res) {
+app.post('/get/speed', validateRequestToken, function (req, res) {
     res.status(200).send(busPosition.calculateSpeed());
 });
 
-app.post('/get/position', function (req, res) {
+app.post('/get/position', validateRequestToken, function (req, res) {
     res.status(200).send(busPosition.getCurrentPosition());
 });
 
@@ -117,8 +113,8 @@ io.emit('updateLocation',busPosition.getCurrentPosition());
 // TODO Refresh token
 
 function validateRequestToken(req, res, next) {
-    let publicKey = req.query.public_key;
-    let privateKey = req.query.private_key;
+    let publicKey = req.get('Client-ID');
+    let privateKey = req.get('Client-Secret');
     if (!publicKey || !privateKey) {
         return res.json({
             status: 0,
@@ -131,7 +127,16 @@ function validateRequestToken(req, res, next) {
             error: "Invalid token"
         });
     }
-    // TODO Decrease remaining request value
-    // TODO Do nothing on 0 remaining request
-    next();
+    let remaining = tokenManager.decrement(publicKey, privateKey);
+    if (remaining >= 0) {
+        res.set('X-Request-Limit', 60);
+        res.set('X-Request-Remaining', remaining);
+        return next();
+    }
+    setTimeout(() => {
+        res.json({
+            status: 0,
+            error: "Request limit reached"
+        });
+    }, 5000);
 };

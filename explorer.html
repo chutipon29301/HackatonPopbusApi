@@ -85,11 +85,11 @@
                 xhr.setRequestHeader('Client-Secret', $('#clientSecretField').val());
             },
             success: (data, textStatus, request) => {
-                console.log(data);
-                console.log(textStatus);
-                console.log(request);
                 $('#headArea').val(request.getAllResponseHeaders());
                 $('#bodyArea').val(JSON.stringify(data));
+            },
+            error: () => {
+                alert('Timeout');
             }
         });
     });
