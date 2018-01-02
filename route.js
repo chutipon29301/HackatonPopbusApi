@@ -12,7 +12,8 @@ var bus_1 = {
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 12,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         },
         {
             id: 2,
@@ -20,7 +21,8 @@ var bus_1 = {
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 12,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         },
         {
             id: 3,
@@ -28,7 +30,8 @@ var bus_1 = {
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 12,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         }
     ]
 };
@@ -40,7 +43,8 @@ var bus_2 = {
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 1,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         },
         {
             id: 2,
@@ -48,7 +52,8 @@ var bus_2 = {
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 1,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         },
         {
             id: 3,
@@ -56,7 +61,8 @@ var bus_2 = {
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 1,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         }
     ]
 };
@@ -68,7 +74,8 @@ var bus_3 = {
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 1,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         },
         {
             id: 2,
@@ -76,7 +83,8 @@ var bus_3 = {
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 1,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         },
         {
             id: 3,
@@ -84,7 +92,8 @@ var bus_3 = {
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 1,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         }
     ]
 };
@@ -96,7 +105,8 @@ var bus_4 = {
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 19,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         },
         {
             id: 2,
@@ -104,7 +114,8 @@ var bus_4 = {
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 19,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         },
         {
             id: 3,
@@ -112,7 +123,8 @@ var bus_4 = {
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 19,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         }
     ]
 };
@@ -193,9 +205,11 @@ var busPositionUpdate = schedule.scheduleJob('* * * * * *', function () {
                 if (isAtStop(linePass, buses[i].buses[j])) {
                     buses[i].buses[j].latitude += directionVector._data[0] / 10;
                     buses[i].buses[j].longitude += directionVector._data[1] / 10;
+                    buses[i].buses[j].atStop = true;
                 } else {
                     buses[i].buses[j].latitude += directionVector._data[0];
                     buses[i].buses[j].longitude += directionVector._data[1];
+                    buses[i].buses[j].atStop = false;
                 }
                 if (isBetween(startPos, buses[i].buses[j], route[i][buses[i].buses[j].current_position])) {
                     buses[i].buses[j].current_position = (buses[i].buses[j].current_position + 1) % route[i].length;
