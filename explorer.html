@@ -47,6 +47,9 @@
                         </select>
                     </div>
                 <button class="btn btn-primary btn-block" id="submitBtn">Submit</button>
+                <div class="card bg-warning text-white" id="loadingCard">
+                    <div class="card-body">Loading...</div>
+                </div>
             </div>
             <div class="col-sm-6">
                 <h2>Response</h2>
@@ -64,6 +67,7 @@
     </div>
     <script>
     $('#busnumberGroup').hide();
+    $('#loadingCard').hide();
     $('#pathSelect').change(() => {
         if ($('#pathSelect').val() == '/get/route') {
             $('#busnumberGroup').show();
@@ -73,6 +77,7 @@
         }
     });
     $('#submitBtn').click(() => {
+        $('#loadingCard').show();
         let url = $('#pathSelect').val();
         $.ajax({
             url: url,
@@ -87,9 +92,11 @@
             success: (data, textStatus, request) => {
                 $('#headArea').val(request.getAllResponseHeaders());
                 $('#bodyArea').val(JSON.stringify(data));
+                $('#loadingCard').hide();
             },
             error: () => {
                 alert('Timeout');
+                $('#loadingCard').hide();
             }
         });
     });

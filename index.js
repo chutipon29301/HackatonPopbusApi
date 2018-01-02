@@ -112,7 +112,6 @@ var locationUpdater = schedule.scheduleJob('* * * * * *', function () {
 
 var tokenRefresher = schedule.scheduleJob('0 * * * * *', () => {
     tokenManager.refresh();
-    console.log("Refreshed");
 });
 
 function validateRequestToken(req, res, next) {
