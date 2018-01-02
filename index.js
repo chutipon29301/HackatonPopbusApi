@@ -45,8 +45,20 @@ app.get('/home', function (req, res) {
     res.render('home', {});
 });
 
-app.get('/getTemp', function (req, res) {
-    res.status(200).send(temp());
+app.get('/get/temp/inside', (req, res) => {
+    res.json({
+        status: 1,
+        data: temp.getInsideTemp(1000)
+    });
+    // TODO Replace with real bus weight
+});
+
+app.get('/get/temp/outside', (req, res) => {
+    res.json({
+        status: 1,
+        data: temp.getOutsideTemp()
+    })
+    // TODO Alter between different cars
 });
 
 app.get('/test', function (req, res) {

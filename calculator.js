@@ -1,4 +1,4 @@
-module.exports = function getTemp() {
+function getOutsideTemp() {
     const dateObj = new Date();
 
     function dateOfYear() {
@@ -36,5 +36,26 @@ module.exports = function getTemp() {
     temp += timeFactor();
     temp += seasonFactor();
     temp += rainFactor();
-    return temp.toFixed(2);
+    return parseFloat(temp.toFixed(2));
 }
+function getInsideTemp(busWeight) {
+    let outsideTemp = getOutsideTemp();
+    let expectedTemp = 23;
+    let maximumTemp = 5 + outsideTemp;
+    if (maximumTemp < 34) maximumTemp = 34;
+    let maxBusWeight = 2000;
+    let factor;
+    if (busWeight <= maxBusWeight) {
+        factor = busWeight / maxBusWeight;
+    }
+    else {
+        factor = 1 + 2 * (busWeight - maxBusWeight) / maxBusWeight;
+    }
+    let temp = expectedTemp + factor * (outsideTemp - expectedTemp);
+    if (temp > maximumTemp) {
+        temp = maximumTemp;
+    }
+    return parseFloat(temp.toFixed(2));
+}
+exports.getOutsideTemp = getOutsideTemp
+exports.getInsideTemp = getInsideTemp
