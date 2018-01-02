@@ -38,7 +38,7 @@ var bus_1 = {
 var bus_2 = {
     counter: 0,
     buses: [{
-            id: 1,
+            id: 4,
             max_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
@@ -47,7 +47,7 @@ var bus_2 = {
             atStop: false
         },
         {
-            id: 2,
+            id: 5,
             max_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
@@ -56,7 +56,7 @@ var bus_2 = {
             atStop: false
         },
         {
-            id: 3,
+            id: 6,
             max_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
@@ -69,7 +69,7 @@ var bus_2 = {
 var bus_3 = {
     counter: 0,
     buses: [{
-            id: 1,
+            id: 7,
             max_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
@@ -78,7 +78,7 @@ var bus_3 = {
             atStop: false
         },
         {
-            id: 2,
+            id: 8,
             max_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
@@ -87,7 +87,7 @@ var bus_3 = {
             atStop: false
         },
         {
-            id: 3,
+            id: 9,
             max_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
@@ -100,7 +100,7 @@ var bus_3 = {
 var bus_4 = {
     counter: 0,
     buses: [{
-            id: 1,
+            id: 10,
             max_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
@@ -109,7 +109,7 @@ var bus_4 = {
             atStop: false
         },
         {
-            id: 2,
+            id: 11,
             max_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
@@ -118,7 +118,7 @@ var bus_4 = {
             atStop: false
         },
         {
-            id: 3,
+            id: 12,
             max_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
@@ -237,7 +237,18 @@ function isAtStop(linePass, position) {
 }
 
 var getCurrentPostion = function () {
-    return buses;
+    var returnObject = [];
+    for (let i = 0; i < buses.length; i++) {
+        for (let j = 0; j < buses[i].buses.length; j++) {
+            returnObject.push({
+                id: buses[i].buses[j].id,
+                latitude: buses[i].buses[j].latitude,
+                longitude: buses[i].buses[j].longitude,
+                line: i
+            });
+        }
+    }
+    return returnObject;
 }
 
 module.exports = {

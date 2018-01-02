@@ -61,10 +61,6 @@ app.get('/get/temp/outside', (req, res) => {
     // TODO Alter between different cars
 });
 
-app.get('/test', function (req, res) {
-    res.render('htmlTemplate', {});
-});
-
 app.get('/get/stations', (req, res) => {
     res.json({
         status: 1,
@@ -97,6 +93,10 @@ app.get('/get/speed', function (req, res) {
 
 app.get('/get/position', function (req, res) {
     res.status(200).send(busPosition.getCurrentPosition());
+});
+
+app.get('/status', function(req,res){
+    res.status(200).render('status',{});
 });
 
 var locationUpdater = schedule.scheduleJob('* * * * * *', function () {
