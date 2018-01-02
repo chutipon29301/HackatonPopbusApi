@@ -96,9 +96,11 @@ app.get('/get/position', function (req, res) {
 });
 
 app.get('/status', function(req,res){
-    res.status(200).render('status',{});
+    res.status(200).render('status',{
+        locations: busPosition.getCurrentPosition()
+    });
 });
 
 var locationUpdater = schedule.scheduleJob('* * * * * *', function () {
-    io.emit('updateLocation','');
+    io.emit('updateLocation',busPosition.getCurrentPosition());
 });
