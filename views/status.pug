@@ -1,0 +1,22 @@
+extends htmlTemplate.pug
+block breadcrumb
+    li.breadcrumb-item.active Status
+block content
+    .container
+        .table-responsive
+            table.table.table-hover
+                thead
+                    tr
+                        th no.
+                        th id
+                        th latitude
+                        th longitude
+                tbody
+                    each location, index in locations
+                        tr
+                            td= index+1
+                            td= location.id
+                            td= location.latitude
+                            td= location.longitude
+block script
+    script(src="/js/status.js")

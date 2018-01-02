@@ -70,7 +70,11 @@ app.post('/get/temp/outside', (req, res) => {
     // TODO Alter between different cars
 });
 
+<<<<<<< HEAD
 app.post('/get/stations', (req, res) => {
+=======
+app.get('/get/stations', (req, res) => {
+>>>>>>> 912d0dde9c5445351acbddff4b2e8003bf7930ad
     res.json({
         status: 1,
         data: constants.station
@@ -100,8 +104,14 @@ app.post('/get/position', function (req, res) {
     res.status(200).send(busPosition.getCurrentPosition());
 });
 
+app.get('/status', function(req,res){
+    res.status(200).render('status',{
+        locations: busPosition.getCurrentPosition()
+    });
+});
+
 var locationUpdater = schedule.scheduleJob('* * * * * *', function () {
-    io.emit('updateLocation','');
+io.emit('updateLocation',busPosition.getCurrentPosition());
 });
 
 // TODO Refresh token

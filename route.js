@@ -12,7 +12,8 @@ var bus_1 = {
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 12,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         },
         {
             id: 2,
@@ -20,7 +21,8 @@ var bus_1 = {
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 12,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         },
         {
             id: 3,
@@ -28,91 +30,101 @@ var bus_1 = {
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 12,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         }
     ]
 };
 var bus_2 = {
     counter: 0,
     buses: [{
-            id: 1,
+            id: 4,
             max_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 1,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         },
         {
-            id: 2,
+            id: 5,
             max_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 1,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         },
         {
-            id: 3,
+            id: 6,
             max_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 1,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         }
     ]
 };
 var bus_3 = {
     counter: 0,
     buses: [{
-            id: 1,
+            id: 7,
             max_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 1,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         },
         {
-            id: 2,
+            id: 8,
             max_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 1,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         },
         {
-            id: 3,
+            id: 9,
             max_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 1,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         }
     ]
 };
 var bus_4 = {
     counter: 0,
     buses: [{
-            id: 1,
+            id: 10,
             max_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 19,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         },
         {
-            id: 2,
+            id: 11,
             max_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 19,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         },
         {
-            id: 3,
+            id: 12,
             max_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 19,
-            cumulative_distance: 0
+            cumulative_distance: 0,
+            atStop: false
         }
     ]
 };
@@ -193,9 +205,11 @@ var busPositionUpdate = schedule.scheduleJob('* * * * * *', function () {
                 if (isAtStop(linePass, buses[i].buses[j])) {
                     buses[i].buses[j].latitude += directionVector._data[0] / 10;
                     buses[i].buses[j].longitude += directionVector._data[1] / 10;
+                    buses[i].buses[j].atStop = true;
                 } else {
                     buses[i].buses[j].latitude += directionVector._data[0];
                     buses[i].buses[j].longitude += directionVector._data[1];
+                    buses[i].buses[j].atStop = false;
                 }
                 if (isBetween(startPos, buses[i].buses[j], route[i][buses[i].buses[j].current_position])) {
                     buses[i].buses[j].current_position = (buses[i].buses[j].current_position + 1) % route[i].length;
@@ -223,7 +237,18 @@ function isAtStop(linePass, position) {
 }
 
 var getCurrentPostion = function () {
-    return buses;
+    var returnObject = [];
+    for (let i = 0; i < buses.length; i++) {
+        for (let j = 0; j < buses[i].buses.length; j++) {
+            returnObject.push({
+                id: buses[i].buses[j].id,
+                latitude: buses[i].buses[j].latitude,
+                longitude: buses[i].buses[j].longitude,
+                line: i
+            });
+        }
+    }
+    return returnObject;
 }
 
 module.exports = {
