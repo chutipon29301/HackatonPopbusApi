@@ -1,5 +1,4 @@
 var socket = io();
-getLocation();
 var marker = [];
 
 var map = new google.maps.Map(document.getElementById('map'), {
@@ -8,22 +7,18 @@ var map = new google.maps.Map(document.getElementById('map'), {
     mapTypeId: google.maps.MapTypeId.ROADMAP
 });
 
-socket.on('updateLocation', function (msg) {
-    getLocation();
-});
-
-function getLocation() {
-    if (marker) {
-        for (let i = 0; i < marker.length; i++) {
-            marker[i].setMap(null);
+socket.on('updateLocation', function (data) {
+    if(data){
+        if (marker) {
+            for (let i = 0; i < marker.length; i++) {
+                marker[i].setMap(null);
+            }
+            marker.length = 0;
         }
-        marker.length = 0;
-    }
-    $.get('/get/position', function (data, status) {
         var locations = [];
         data.map(value => {
             locations.push([
-                ''+(value.line + 1),
+                '' + (value.line + 1),
                 value.latitude,
                 value.longitude
             ]);
@@ -35,5 +30,5 @@ function getLocation() {
                 label: locations[i][0],
             }));
         }
-    });
-}
+    }
+});
