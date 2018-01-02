@@ -100,17 +100,20 @@ app.post('/get/position', validateRequestToken, function (req, res) {
     res.status(200).send(busPosition.getCurrentPosition());
 });
 
-app.get('/status', function(req,res){
-    res.status(200).render('status',{
+app.get('/status', function (req, res) {
+    res.status(200).render('status', {
         locations: busPosition.getCurrentPosition()
     });
 });
 
 var locationUpdater = schedule.scheduleJob('* * * * * *', function () {
-io.emit('updateLocation',busPosition.getCurrentPosition());
+    io.emit('updateLocation', busPosition.getCurrentPosition());
 });
 
-// TODO Refresh token
+var tokenRefresher = schedule.scheduleJob('0 * * * * *', () => {
+    tokenManager.refresh();
+    console.log("Refreshed");
+});
 
 function validateRequestToken(req, res, next) {
     let publicKey = req.get('Client-ID');
