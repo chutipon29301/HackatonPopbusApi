@@ -6,124 +6,170 @@ function hashToBucket(key) {
 let rawTokens = [
     {
         name: 'Admin',
-        public: 'vmp66yuu',
-        private: 'o5NMNrwHDgjvsAo3lQ8EG9DCR0Spr8Iy'
+        public: 'wsvnlq0s',
+        private: 'iBPqfYnJLjDsjZfK1oPagJ1GCmM8gcyb',
+        limit: 500,
+        remaining: 500
     },
     {
         name: 'G.1',
-        public: 'cmhekzs6',
-        private: 'wtVFl2TZTIuuRD6jNQK5LO3DxL0AzG9z'
+        public: 'f4os4q9s',
+        private: 'pbXWcUxzvVGgTWZB8gm16guUzfhDgUYM',
+        limit: 100,
+        remaining: 100
     },
     {
         name: 'G.2',
-        public: 'n4rzhhcf',
-        private: 'lyW1Lj6FwhOmYKCq5BAk9Cm1HltmzbUr'
+        public: 'xn8pkkcs',
+        private: 'QwYWjQTkKJrprAC3dP9XUCuBfew43Pe1',
+        limit: 100,
+        remaining: 100
     },
     {
         name: 'G.3',
-        public: 'gk3jlyke',
-        private: 'xCJx4VbZApwITdURn1jDqyDMFq57xLao'
+        public: '1ft7zyc6',
+        private: 'GnxVGPw5tzseaMWuQa3FvBW1DNvEHZiQ',
+        limit: 100,
+        remaining: 100
     },
     {
         name: 'G.4',
-        public: 'vo5tmpj7',
-        private: '4Yq2Iffz0ri1f5hjgNYVqhwQ0er71yUy'
+        public: 'mhj1tiun',
+        private: 'pp7FT4gntqq6UrN6HaiGfyWrefNZ2mpm',
+        limit: 100,
+        remaining: 100
     },
     {
         name: 'G.5',
-        public: '0p00a5u2',
-        private: 'bR2yejB5NQEFsI0KB3GKV1tpomWOFlF0'
+        public: 'lmxrve3p',
+        private: 't5owXNmp7bTFHfj6H8VdawSf5d6ewZt1',
+        limit: 100,
+        remaining: 100
     },
     {
-        name: 'G.6',
-        public: 'hmwh0rjw',
-        private: 'Fr02yCWC8DugZGjibbUpVXI9FOFErYjm'
+        name: 'Too',
+        public: '0lr3f4ud',
+        private: 'k5dbDz9ECA1YgfEzvT7UqHJF3CbfREfS',
+        limit: 30,
+        remaining: 30
     },
     {
-        name: 'G.7',
-        public: 'gygey5nx',
-        private: 'NazNRF8ecuUStYnppZTT28ND8PG5yjsl'
+        name: 'Ham',
+        public: 'loig46i0',
+        private: 'Hm8CuFnChgP2Rt4vgSgpUg2nNhfPpWCp',
+        limit: 30,
+        remaining: 30
     },
     {
-        name: 'G.8',
-        public: 'q5j4s7uz',
-        private: 'jfxlON9GqfQmvxxQkork7O4iI7wTiuCf'
+        name: 'Ming',
+        public: 'qjiz24fn',
+        private: 'kq3k3JTxGNsjgZDeUpTuEh6Ukkf9tSJg',
+        limit: 30,
+        remaining: 30
     },
     {
-        name: 'G.9',
-        public: 'i6bshw4s',
-        private: '76Xr2Bey3PE1qRwU7VMPLtEV9GtBZMQk'
+        name: 'Beam',
+        public: 'qzhvjx9l',
+        private: 's9xr6p1BXmnF5seUMHeZR1utFESHUags',
+        limit: 30,
+        remaining: 30
     },
     {
-        name: 'G.10',
-        public: 'oq41lqh1',
-        private: 'yl0dKSao5xMVA3QUQ6W0nyRjYj8v8nHu'
+        name: 'Pud',
+        public: 'r586yr82',
+        private: 'eJRbuJcaNjpAUzrNfMByvHSxhr1AEMW4',
+        limit: 30,
+        remaining: 30
     },
     {
-        name: 'G.11',
-        public: 'cpexq5b7',
-        private: 'clTnranFyhREPvxfsvAu1Hec0hZxQ6gl'
+        name: 'Tee',
+        public: 'g18dgs19',
+        private: '31iZaHfB83VTrCpUwcYyVRTna4iDLAde',
+        limit: 30,
+        remaining: 30
     },
     {
-        name: 'G.12',
-        public: 'l9o7pk84',
-        private: 'nc6oc1A2GJoOVmgPwSVzObPHT11rbKnP'
+        name: 'Warm',
+        public: 'f4n35oyh',
+        private: '8m4xriwFTJaALQdD1pmmnnP9hyw8hpXx',
+        limit: 30,
+        remaining: 30
     },
     {
-        name: 'G.13',
-        public: 'z5nhd0qk',
-        private: 'TUhJlC84nB5UfPpSmF6rh7oej990To0s'
+        name: 'Taan',
+        public: 'h01ebz4b',
+        private: 'sdUvNFjP5i1CwK5kyaZ6vK5mAWpeJ1Xy',
+        limit: 30,
+        remaining: 30
     },
     {
-        name: 'G.14',
-        public: 'eok8rjoq',
-        private: 'MYJNKnDDQWDUGsDF7RQRYxV7GfKmw1vN'
+        name: 'Khao-oat',
+        public: 'twy7ajcf',
+        private: 'qDqbpbZHJhHJreVGAV8FDjHr3Q3giCKB',
+        limit: 30,
+        remaining: 30
     },
     {
-        name: 'G.15',
-        public: 'n2tr4rtn',
-        private: 'YvvHvOuSGBPNfxxOLe2EsVbfkpXrcRYg'
+        name: 'Fap',
+        public: 'jqc9v9s4',
+        private: '55DEoddeo1C8fzygKNV6ZAw7JY1zdPcA',
+        limit: 30,
+        remaining: 30
     },
     {
-        name: 'G.16',
-        public: 'f8853vt8',
-        private: 'BsYUg7R7btF4jC2FqX74MXuVmepKaMJD'
+        name: 'Chan',
+        public: '0buzy5kb',
+        private: 'RXJy85ujYFpTLjzSVb22f3RfAKNWehht',
+        limit: 30,
+        remaining: 30
     },
     {
-        name: 'G.17',
-        public: 'ubz4i6fu',
-        private: 'bJ8C1fF4Js0nMKpf7NDVTxAUZXuDSezW'
+        name: 'Bas',
+        public: 'dxxj2k8v',
+        private: 'cYRQTgYj8shvzpAJBJf1J6ep83P7b2iL',
+        limit: 30,
+        remaining: 30
     },
     {
-        name: 'G.18',
-        public: 'px7wguho',
-        private: 'tlf5DOacp1sUJeDxyohkAzJ69MTqPC9d'
+        name: 'Bee',
+        public: '61e353v7',
+        private: 'xTDLgDToBUXgAnnrVqtErjHuqcMBrXAR',
+        limit: 30,
+        remaining: 30
     },
     {
-        name: 'G.19',
-        public: '2tz5bkt0',
-        private: 'xvWXg4K4mSxExWRu9buWVA53DmMcobpz'
+        name: 'Nuke',
+        public: 'zuip9z5e',
+        private: 'fbdHjjFi2zhjJdTNmDiPxihYeWVBfe3x',
+        limit: 30,
+        remaining: 30
     },
     {
-        name: 'G.20',
-        public: 'lnp93b4u',
-        private: 'gzUuY3OVO3j8QYyq2qcbSEbyJEDh9A9t'
+        name: 'Titang',
+        public: 'trdt5qgc',
+        private: 'hdR76566u6hEw8hCSUywgKBRDK5dvHLy',
+        limit: 30,
+        remaining: 30
     },
     {
-        name: 'G.21',
-        public: 'rzrfrlfb',
-        private: 'Y2XnzUqa63RMT2oft4gkZsDPI4RaT5hL'
+        name: 'Spare-1',
+        public: 'xdd35dut',
+        private: 'cZdPb5eJV3ruHw1tTfg7mZFFjj77oDZp',
+        limit: 30,
+        remaining: 30
     },
     {
-        name: 'G.22',
-        public: 'by2bxcmt',
-        private: 'JnLDG7MQ1zYzo9XgJqY5DOEOok4rvf3o'
-    }];
+        name: 'Spare-2',
+        public: '0o6raqqm',
+        private: 'YHrJofZAho1oK3ePSCytPUNayk2Zw34z',
+        limit: 30,
+        remaining: 30
+    }
+];
 let tokens = new Array(rawTokens.length);
 rawTokens.forEach(token => {
     let bucket = hashToBucket(token.public);
     tokens[bucket] = token;
-    tokens[bucket].remaining = 60;
 });
 function getToken(publicKey) {
     let bucket = hashToBucket(publicKey);
@@ -140,7 +186,7 @@ function validate(publicKey, privateKey) {
 }
 function refresh() {
     tokens.forEach(token => {
-        token.remaining = 60;
+        token.remaining = token.limit;
     });
 }
 function decrement(publicKey, privateKey) {

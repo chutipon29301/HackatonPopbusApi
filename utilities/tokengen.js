@@ -14,7 +14,7 @@ function randPublic() {
     return out;
 }
 function randPrivate() {
-    const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const chars = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
     let out = "";
     for (let i = 0; i < 32; i++) {
         let random = Math.floor(Math.random() * chars.length);
@@ -30,7 +30,9 @@ while (count > 0) {
         tokens[hash] = {
             name: "",
             public: public,
-            private: private
+            private: private,
+            limit: 30,
+            remaining: 30
         };
         count--;
     }
