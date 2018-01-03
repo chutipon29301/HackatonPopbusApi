@@ -237,7 +237,7 @@ var busPositionUpdate = schedule.scheduleJob('* * * * * *', function () {
                     } else if (buses[i].buses[j].current_weight + weight >= buses[i].buses[j].max_weight) {
                         buses[i].buses[j].current_weight = buses[i].buses[j].max_weight;
                     } else {
-                        buses[i].buses[j].current_weight = buses[i].buses[j].current_weight + weight;
+                        buses[i].buses[j].current_weight = buses[i].buses[j].current_weight + weight + getRandomInt(-9,10);
                     }
                 } else {
                     buses[i].buses[j].latitude += directionVector._data[0];
