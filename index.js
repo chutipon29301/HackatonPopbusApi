@@ -94,11 +94,19 @@ app.post('/get/route', validateRequestToken, (req, res) => {
 });
 
 app.post('/get/speed', validateRequestToken, function (req, res) {
-    res.status(200).send(busPosition.calculateSpeed());
+    res.json({
+        status: 1,
+        data: busPosition.calculateSpeed()
+    })
+    // res.status(200).send(busPosition.calculateSpeed());
 });
 
 app.post('/get/position', validateRequestToken, function (req, res) {
-    res.status(200).send(busPosition.getCurrentPosition());
+    res.json({
+        status: 1,
+        data: busPosition.getCurrentPosition()
+    });
+    // res.status(200).send(busPosition.getCurrentPosition());
 });
 
 app.get('/status', function (req, res) {
