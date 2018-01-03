@@ -231,7 +231,7 @@ var busPositionUpdate = schedule.scheduleJob('* * * * * *', function () {
                     buses[i].buses[j].latitude += directionVector._data[0] / 10;
                     buses[i].buses[j].longitude += directionVector._data[1] / 10;
                     buses[i].buses[j].atStop = true;
-                    var weight = getRandomInt(-5, 6) * 50;
+                    var weight = getRandomInt(-5, 15) * 50;
                     if (buses[i].buses[j].current_weight + weight <= buses[i].buses[j].min_weight) {
                         buses[i].buses[j].current_weight = buses[i].buses[j].min_weight;
                     } else if (buses[i].buses[j].current_weight + weight >= buses[i].buses[j].max_weight) {
@@ -287,7 +287,7 @@ var getCurrentPostion = function () {
 var getCurrentWeight = function () {
     var returnObject = [];
     for (let i = 0; i < buses.length; i++) {
-        for (let j = 0; j < buses[i].length; j++) {
+        for (let j = 0; j < buses[i].buses.length; j++) {
             returnObject.push({
                 id: buses[i].buses[j].id,
                 maxWeight: buses[i].buses[j].max_weight,

@@ -117,6 +117,10 @@ app.post('/get/weight', validateRequestToken, function(req,res){
     });
 });
 
+app.get('/a', function(req,res){
+    res.status(200).send(busPosition.getCurrentWeight());
+});
+
 app.get('/status', function (req, res) {
     res.status(200).render('status', {
         locations: busPosition.getCurrentPosition()
