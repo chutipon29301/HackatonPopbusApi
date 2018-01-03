@@ -5,30 +5,37 @@ function hashToBucket(key) {
 }
 let rawTokens = [
     {
+        name: "Admin",
         public: "1xnh225k",
         private: "Yq7ZiAoOEmdYgRNyxUBCbC7B9vcwPslN"
     },
     {
+        name: "Group 1",
         public: "aazkly5h",
         private: "OQcDA1GRA9dItg5cWF23DAu8nGq0hJLq"
     },
     {
+        name: "Group 2",
         public: "ypi9v8rq",
         private: "Ra6y6Dyuhp0K7HmTh6wOAttg6LEu0y0F"
     },
     {
+        name: "Group 3",
         public: "hmv46pwd",
         private: "xv1K8UcgEUITR5NHsvOPWUf5vATt8cne"
     },
     {
+        name: "Group 4",
         public: "3xa7197k",
         private: "mykam6JKc8L6KJEtuaZ9KSbz4N0be8FY"
     },
     {
+        name: "Group 5",
         public: "3e931inw",
         private: "6V4ZgkAGtWfUgJb2kDJynB4fWzihuhIm"
     },
     {
+        name: "Group 6",
         public: "0olpkinu",
         private: "jXQ9x9p8PoC3TscQyQL4Na8NwqYxhKGw"
     }
@@ -65,6 +72,7 @@ function decrement(publicKey, privateKey) {
     }
     return -1;
 }
+exports.getToken = getToken;
 exports.validate = validate;
 exports.refresh = refresh;
 exports.decrement = decrement;

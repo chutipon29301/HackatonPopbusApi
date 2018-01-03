@@ -3,6 +3,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request-promise-native');
 var schedule = require('node-schedule');
+var exec = require('child_process').exec;
 var temp = require('./calculator');
 var busPosition = require('./route');
 var constants = require('./constants');
@@ -142,6 +143,8 @@ function validateRequestToken(req, res, next) {
     if (remaining >= 0) {
         res.set('X-Request-Limit', 60);
         res.set('X-Request-Remaining', remaining);
+        let date = new Date();
+        exec('echo "' + tokenManager.getToken(publicKey).name + ' request ' + req.url + '" >> log/' + date.getFullYear() + (date.getMonth() + 1).toString().padStart(2, '0') + date.getDate().toString().padStart(2, '0') + '.txt');
         return next();
     }
     setTimeout(() => {
