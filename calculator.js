@@ -25,7 +25,7 @@ function getOutsideTemp() {
     function seasonFactor() {
         let factor = dateOfYear();
         if (factor > 183) factor -= 2 * (factor - 183);
-        factor = (factor * 8 / 183) - 4;
+        factor = (factor * 6 / 183) - 3;
         return factor;
     }
 
@@ -33,7 +33,7 @@ function getOutsideTemp() {
         return -70000 / (Math.pow(dateOfYear() - 213, 2) + 15000);
     }
 
-    let temp = 30;
+    let temp = 32;
     temp += timeFactor();
     temp += seasonFactor();
     temp += rainFactor();

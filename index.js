@@ -57,11 +57,20 @@ app.get('/test', function (req, res) {
 });
 
 app.post('/get/temp/inside', validateRequestToken, (req, res) => {
-    res.json({
-        status: 1,
-        data: temp.getInsideTemp(busPosition.getCurrentWeight() - 7000)
-    });
-    // TODO Alternate between different cars
+    let busid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    let index = busid.indexOf(parseInt(req.body.busid));
+    if (index != -1) {
+        res.json({
+            status: 1,
+            data: temp.getInsideTemp(busPosition.getCurrentWeight()[index].currentWeight - 7000)
+        });
+    }
+    else {
+        res.json({
+            status: 0,
+            error: "Bus not found"
+        });
+    }
 });
 
 app.post('/get/temp/outside', validateRequestToken, (req, res) => {
@@ -89,7 +98,7 @@ app.post('/get/route', validateRequestToken, (req, res) => {
     } else {
         res.json({
             status: 0,
-            error: "Bus not found"
+            error: "Bus route not found"
         })
     }
 });
