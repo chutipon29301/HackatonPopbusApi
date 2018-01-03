@@ -1,3 +1,4 @@
+"use strict";
 const hashFunc = require('sha256');
 function hashToBucket(key) {
     return parseInt(hashFunc(key), 16) % 7;

@@ -1,3 +1,4 @@
+"use strict";
 function getOutsideTemp() {
     const dateObj = new Date();
 
