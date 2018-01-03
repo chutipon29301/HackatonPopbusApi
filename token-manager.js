@@ -1,50 +1,175 @@
 "use strict";
 const hashFunc = require('sha256');
 function hashToBucket(key) {
-    return parseInt(hashFunc(key), 16) % 7;
+    return parseInt(hashFunc(key), 16) % 23;
 }
 let rawTokens = [
     {
-        name: "Admin",
-        public: "1xnh225k",
-        private: "Yq7ZiAoOEmdYgRNyxUBCbC7B9vcwPslN"
+        name: 'Admin',
+        public: 'wsvnlq0s',
+        private: 'iBPqfYnJLjDsjZfK1oPagJ1GCmM8gcyb',
+        limit: 500,
+        remaining: 500
     },
     {
-        name: "Group 1",
-        public: "aazkly5h",
-        private: "OQcDA1GRA9dItg5cWF23DAu8nGq0hJLq"
+        name: 'G.1',
+        public: 'f4os4q9s',
+        private: 'pbXWcUxzvVGgTWZB8gm16guUzfhDgUYM',
+        limit: 100,
+        remaining: 100
     },
     {
-        name: "Group 2",
-        public: "ypi9v8rq",
-        private: "Ra6y6Dyuhp0K7HmTh6wOAttg6LEu0y0F"
+        name: 'G.2',
+        public: 'xn8pkkcs',
+        private: 'QwYWjQTkKJrprAC3dP9XUCuBfew43Pe1',
+        limit: 100,
+        remaining: 100
     },
     {
-        name: "Group 3",
-        public: "hmv46pwd",
-        private: "xv1K8UcgEUITR5NHsvOPWUf5vATt8cne"
+        name: 'G.3',
+        public: '1ft7zyc6',
+        private: 'GnxVGPw5tzseaMWuQa3FvBW1DNvEHZiQ',
+        limit: 100,
+        remaining: 100
     },
     {
-        name: "Group 4",
-        public: "3xa7197k",
-        private: "mykam6JKc8L6KJEtuaZ9KSbz4N0be8FY"
+        name: 'G.4',
+        public: 'mhj1tiun',
+        private: 'pp7FT4gntqq6UrN6HaiGfyWrefNZ2mpm',
+        limit: 100,
+        remaining: 100
     },
     {
-        name: "Group 5",
-        public: "3e931inw",
-        private: "6V4ZgkAGtWfUgJb2kDJynB4fWzihuhIm"
+        name: 'G.5',
+        public: 'lmxrve3p',
+        private: 't5owXNmp7bTFHfj6H8VdawSf5d6ewZt1',
+        limit: 100,
+        remaining: 100
     },
     {
-        name: "Group 6",
-        public: "0olpkinu",
-        private: "jXQ9x9p8PoC3TscQyQL4Na8NwqYxhKGw"
+        name: 'Too',
+        public: '0lr3f4ud',
+        private: 'k5dbDz9ECA1YgfEzvT7UqHJF3CbfREfS',
+        limit: 30,
+        remaining: 30
+    },
+    {
+        name: 'Ham',
+        public: 'loig46i0',
+        private: 'Hm8CuFnChgP2Rt4vgSgpUg2nNhfPpWCp',
+        limit: 30,
+        remaining: 30
+    },
+    {
+        name: 'Ming',
+        public: 'qjiz24fn',
+        private: 'kq3k3JTxGNsjgZDeUpTuEh6Ukkf9tSJg',
+        limit: 30,
+        remaining: 30
+    },
+    {
+        name: 'Beam',
+        public: 'qzhvjx9l',
+        private: 's9xr6p1BXmnF5seUMHeZR1utFESHUags',
+        limit: 30,
+        remaining: 30
+    },
+    {
+        name: 'Pud',
+        public: 'r586yr82',
+        private: 'eJRbuJcaNjpAUzrNfMByvHSxhr1AEMW4',
+        limit: 30,
+        remaining: 30
+    },
+    {
+        name: 'Tee',
+        public: 'g18dgs19',
+        private: '31iZaHfB83VTrCpUwcYyVRTna4iDLAde',
+        limit: 30,
+        remaining: 30
+    },
+    {
+        name: 'Warm',
+        public: 'f4n35oyh',
+        private: '8m4xriwFTJaALQdD1pmmnnP9hyw8hpXx',
+        limit: 30,
+        remaining: 30
+    },
+    {
+        name: 'Taan',
+        public: 'h01ebz4b',
+        private: 'sdUvNFjP5i1CwK5kyaZ6vK5mAWpeJ1Xy',
+        limit: 30,
+        remaining: 30
+    },
+    {
+        name: 'Khao-oat',
+        public: 'twy7ajcf',
+        private: 'qDqbpbZHJhHJreVGAV8FDjHr3Q3giCKB',
+        limit: 30,
+        remaining: 30
+    },
+    {
+        name: 'Fap',
+        public: 'jqc9v9s4',
+        private: '55DEoddeo1C8fzygKNV6ZAw7JY1zdPcA',
+        limit: 30,
+        remaining: 30
+    },
+    {
+        name: 'Chan',
+        public: '0buzy5kb',
+        private: 'RXJy85ujYFpTLjzSVb22f3RfAKNWehht',
+        limit: 30,
+        remaining: 30
+    },
+    {
+        name: 'Bas',
+        public: 'dxxj2k8v',
+        private: 'cYRQTgYj8shvzpAJBJf1J6ep83P7b2iL',
+        limit: 30,
+        remaining: 30
+    },
+    {
+        name: 'Bee',
+        public: '61e353v7',
+        private: 'xTDLgDToBUXgAnnrVqtErjHuqcMBrXAR',
+        limit: 30,
+        remaining: 30
+    },
+    {
+        name: 'Nuke',
+        public: 'zuip9z5e',
+        private: 'fbdHjjFi2zhjJdTNmDiPxihYeWVBfe3x',
+        limit: 30,
+        remaining: 30
+    },
+    {
+        name: 'Titang',
+        public: 'trdt5qgc',
+        private: 'hdR76566u6hEw8hCSUywgKBRDK5dvHLy',
+        limit: 30,
+        remaining: 30
+    },
+    {
+        name: 'Spare-1',
+        public: 'xdd35dut',
+        private: 'cZdPb5eJV3ruHw1tTfg7mZFFjj77oDZp',
+        limit: 30,
+        remaining: 30
+    },
+    {
+        name: 'Spare-2',
+        public: '0o6raqqm',
+        private: 'YHrJofZAho1oK3ePSCytPUNayk2Zw34z',
+        limit: 30,
+        remaining: 30
     }
 ];
 let tokens = new Array(rawTokens.length);
 rawTokens.forEach(token => {
     let bucket = hashToBucket(token.public);
     tokens[bucket] = token;
-    tokens[bucket].remaining = 60;
 });
 function getToken(publicKey) {
     let bucket = hashToBucket(publicKey);
@@ -61,7 +186,7 @@ function validate(publicKey, privateKey) {
 }
 function refresh() {
     tokens.forEach(token => {
-        token.remaining = 60;
+        token.remaining = token.limit;
     });
 }
 function decrement(publicKey, privateKey) {
