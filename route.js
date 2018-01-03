@@ -9,7 +9,9 @@ var bus_1 = {
     counter: 0,
     buses: [{
             id: 1,
-            max_weight: 7000,
+            min_weight: 7000,
+            max_weight: 8500,
+            current_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 12,
@@ -18,7 +20,9 @@ var bus_1 = {
         },
         {
             id: 2,
-            max_weight: 7000,
+            min_weight: 7000,
+            max_weight: 8500,
+            current_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 12,
@@ -27,7 +31,9 @@ var bus_1 = {
         },
         {
             id: 3,
-            max_weight: 7000,
+            min_weight: 7000,
+            max_weight: 8500,
+            current_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 12,
@@ -40,7 +46,9 @@ var bus_2 = {
     counter: 0,
     buses: [{
             id: 4,
-            max_weight: 7000,
+            min_weight: 7000,
+            max_weight: 8500,
+            current_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 1,
@@ -49,7 +57,9 @@ var bus_2 = {
         },
         {
             id: 5,
-            max_weight: 7000,
+            min_weight: 7000,
+            max_weight: 8500,
+            current_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 1,
@@ -58,7 +68,9 @@ var bus_2 = {
         },
         {
             id: 6,
-            max_weight: 7000,
+            min_weight: 7000,
+            max_weight: 8500,
+            current_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 1,
@@ -71,7 +83,9 @@ var bus_3 = {
     counter: 0,
     buses: [{
             id: 7,
-            max_weight: 7000,
+            min_weight: 7000,
+            max_weight: 8500,
+            current_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 1,
@@ -80,7 +94,9 @@ var bus_3 = {
         },
         {
             id: 8,
-            max_weight: 7000,
+            min_weight: 7000,
+            max_weight: 8500,
+            current_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 1,
@@ -89,7 +105,9 @@ var bus_3 = {
         },
         {
             id: 9,
-            max_weight: 7000,
+            min_weight: 7000,
+            max_weight: 8500,
+            current_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 1,
@@ -102,7 +120,9 @@ var bus_4 = {
     counter: 0,
     buses: [{
             id: 10,
-            max_weight: 7000,
+            min_weight: 7000,
+            max_weight: 8500,
+            current_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 19,
@@ -111,7 +131,9 @@ var bus_4 = {
         },
         {
             id: 11,
-            max_weight: 7000,
+            min_weight: 7000,
+            max_weight: 8500,
+            current_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 19,
@@ -120,7 +142,9 @@ var bus_4 = {
         },
         {
             id: 12,
-            max_weight: 7000,
+            min_weight: 7000,
+            max_weight: 8500,
+            current_weight: 7000,
             latitude: constants.station[0].latitude,
             longitude: constants.station[0].longitude,
             current_position: 19,
@@ -207,6 +231,14 @@ var busPositionUpdate = schedule.scheduleJob('* * * * * *', function () {
                     buses[i].buses[j].latitude += directionVector._data[0] / 10;
                     buses[i].buses[j].longitude += directionVector._data[1] / 10;
                     buses[i].buses[j].atStop = true;
+                    var weight = getRandomInt(-5, 6) * 50;
+                    if (buses[i].buses[j].current_weight + weight <= buses[i].buses[j].min_weight) {
+                        buses[i].buses[j].current_weight = buses[i].buses[j].min_weight;
+                    } else if (buses[i].buses[j].current_weight + weight >= buses[i].buses[j].max_weight) {
+                        buses[i].buses[j].current_weight = buses[i].buses[j].max_weight;
+                    } else {
+                        buses[i].buses[j].current_weight = buses[i].buses[j].current_weight + weight;
+                    }
                 } else {
                     buses[i].buses[j].latitude += directionVector._data[0];
                     buses[i].buses[j].longitude += directionVector._data[1];
@@ -252,8 +284,30 @@ var getCurrentPostion = function () {
     return returnObject;
 }
 
+var getCurrentWeight = function () {
+    var returnObject = [];
+    for (let i = 0; i < buses.length; i++) {
+        for (let j = 0; j < buses[i].length; j++) {
+            returnObject.push({
+                id: buses[i].buses[j].id,
+                maxWeight: buses[i].buses[j].max_weight,
+                minWeight: buses[i].buses[j].min_weight,
+                currentWeight: buses[i].buses[j].current_weight
+            });
+        }
+    }
+    return returnObject;
+}
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
+
 module.exports = {
     calculatePath: calculatePath,
     calculateSpeed: calculateSpeed,
-    getCurrentPosition: getCurrentPostion
+    getCurrentPosition: getCurrentPostion,
+    getCurrentWeight: getCurrentWeight
 };

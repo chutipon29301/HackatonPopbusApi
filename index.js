@@ -110,6 +110,13 @@ app.post('/get/position', validateRequestToken, function (req, res) {
     // res.status(200).send(busPosition.getCurrentPosition());
 });
 
+app.post('/get/weight', validateRequestToken, function(req,res){
+    res.json({
+        status: 1,
+        data: busPosition.getCurrentWeight()
+    });
+});
+
 app.get('/status', function (req, res) {
     res.status(200).render('status', {
         locations: busPosition.getCurrentPosition()
