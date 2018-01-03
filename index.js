@@ -159,7 +159,7 @@ function validateRequestToken(req, res, next) {
         res.set('X-Request-Limit', token.limit);
         res.set('X-Request-Remaining', remaining);
         let date = new Date();
-        exec('echo "' + token.name + ' request ' + req.url + '" >> log/' + date.getFullYear() + (date.getMonth() + 1).toString().padStart(2, '0') + date.getDate().toString().padStart(2, '0') + '.txt');
+        exec('echo "' + date.getHours().toString().padStart(2, '0') + ':' + date.getMinutes().toString().padStart(2, '0') + ':' + date.getSeconds().toString().padStart(2, '0') + ' ' + token.name + ' request ' + req.url + '" >> log/' + date.getFullYear() + (date.getMonth() + 1).toString().padStart(2, '0') + date.getDate().toString().padStart(2, '0') + '.txt');
         return next();
     }
     setTimeout(() => {
