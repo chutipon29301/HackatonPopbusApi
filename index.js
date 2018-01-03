@@ -59,9 +59,9 @@ app.get('/test', function (req, res) {
 app.post('/get/temp/inside', validateRequestToken, (req, res) => {
     res.json({
         status: 1,
-        data: temp.getInsideTemp(1000)
+        data: temp.getInsideTemp(busPosition.getCurrentWeight() - 7000)
     });
-    // TODO Replace with real bus weight
+    // TODO Alternate between different cars
 });
 
 app.post('/get/temp/outside', validateRequestToken, (req, res) => {
@@ -69,7 +69,7 @@ app.post('/get/temp/outside', validateRequestToken, (req, res) => {
         status: 1,
         data: temp.getOutsideTemp()
     })
-    // TODO Alter between different cars
+    // TODO Alternate between different cars
 });
 
 app.post('/get/stations', validateRequestToken, (req, res) => {
@@ -99,7 +99,6 @@ app.post('/get/speed', validateRequestToken, function (req, res) {
         status: 1,
         data: busPosition.calculateSpeed()
     })
-    // res.status(200).send(busPosition.calculateSpeed());
 });
 
 app.post('/get/position', validateRequestToken, function (req, res) {
@@ -107,10 +106,9 @@ app.post('/get/position', validateRequestToken, function (req, res) {
         status: 1,
         data: busPosition.getCurrentPosition()
     });
-    // res.status(200).send(busPosition.getCurrentPosition());
 });
 
-app.post('/get/weight', validateRequestToken, function(req,res){
+app.post('/get/weight', validateRequestToken, function (req, res) {
     res.json({
         status: 1,
         data: busPosition.getCurrentWeight()
