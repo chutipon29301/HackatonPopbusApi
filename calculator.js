@@ -44,7 +44,7 @@ function getInsideTemp(busWeight) {
     let expectedTemp = 23;
     let maximumTemp = 5 + outsideTemp;
     if (maximumTemp < 34) maximumTemp = 34;
-    let maxBusWeight = 2000;
+    let maxBusWeight = 1500;
     let factor;
     if (busWeight <= maxBusWeight) {
         factor = busWeight / maxBusWeight;

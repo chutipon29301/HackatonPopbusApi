@@ -5,8 +5,14 @@ Each group has their own request token which is a pair of strings, client ID and
 Client-ID: <Your-Client-ID>
 Client-Secret: <Your-Client-Secret>
 ```
-Each request token can make up to 60 requests per minute. The number of remaining requests in that minute can be observed at the response header.
+Different tokens can perform different number of requests per minute. Individual token can perform up to 30 requests per minute. Group token can perform up to 100 requests per minute. The number of total and remaining requests can be observed at the response header.
+
+**Example:**
 ```http
-X-Request-Limit: 60
-X-Request-Remaining: [0-59]
+X-Request-Limit: 30
+X-Request-Remaining: 27
+```
+```http
+X-Request-Limit: 100
+X-Request-Remaining: 63
 ```
