@@ -136,7 +136,7 @@ app.post('/get/token', function (req, res) {
         else {
             res.json({
                 status: 0,
-                error: 'Not found'
+                error: 'Unexpected format'
             })
         }
     }, 2500 + 1000 * Math.random());
