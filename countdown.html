@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <style>
+        body {
+            color: white;
+            background-color: black;
+        }
+
+        #time {
+            font-size: 144px;
+            font-family: monospace;
+            text-align: center;
+            margin-top: 250px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="time"></div>
+    <script>
+        const timeup = {
+            day: 6,
+            hour: 12,
+            min: 0,
+            sec: 0,
+            millisec: 0
+        }
+        function updateTime() {
+            let date = new Date();
+            let timeuptime = (((timeup.day * 24 + timeup.hour) * 60 + timeup.min) * 60 + timeup.sec) * 1000 + timeup.millisec;
+            let datetime = (((date.getDate() * 24 + date.getHours()) * 60 + date.getMinutes()) * 60 + date.getSeconds()) * 1000 + date.getMilliseconds();
+            let timelefttime = timeuptime - datetime;
+            if (timelefttime >= 0) {
+                let hour = Math.floor(timelefttime / 60 / 60 / 1000);
+                let min = Math.floor(timelefttime / 60 / 1000 % 60);
+                let sec = Math.floor(timelefttime / 1000 % 60);
+                let millisec = Math.floor(timelefttime % 1000);
+                let text = hour.toString().padStart(2, '0') + ':' + min.toString().padStart(2, '0') + ':' + sec.toString().padStart(2, '0') + '<span style="color:gray;font-size:.6em;">.' + millisec.toString().padStart(3, '0')+'</span>';
+                while (text[0] == ':' || text[0] == '0') {
+                    text = text.substr(1);
+                }
+                $('#time').html(text);
+            }
+            else {
+                $('#time').text("Time's up");
+            }
+        }
+        updateTime();
+        setInterval(updateTime, 15);
+    </script>
+</body>
+
+</html>

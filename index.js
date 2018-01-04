@@ -49,12 +49,20 @@ app.get('/home', function (req, res) {
     res.render('home', {});
 });
 
-app.get('/explorer', (req, res) => {
+app.get('/thincexplorer', (req, res) => {
     res.render('explorer', {});
+});
+
+app.get('/ref', (req, res) => {
+    res.sendFile(__dirname + '/thincexplorer.html');
 });
 
 app.get('/token', (req, res) => {
     res.sendFile(__dirname + '/token.html');
+});
+
+app.get('/countdown', (req, res) => {
+    res.sendFile(__dirname + '/countdown.html');
 });
 
 app.post('/get/temp/inside', validateRequestToken, (req, res) => {
