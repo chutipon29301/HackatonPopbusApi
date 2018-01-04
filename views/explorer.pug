@@ -1,0 +1,135 @@
+extends htmlTemplate.pug
+block content
+    .container    
+        .row
+            .col-sm-6
+                h2 Request
+                |                 
+                .form-group
+                    label(for='clientIdField') Client ID:
+                    |                     
+                    input#clientIdField.form-control(type='text')
+                |                 
+                .form-group
+                    label(for='clientSecretField') Client Secret:
+                    |                     
+                    input#clientSecretField.form-control(type='text')
+                |                 
+                .form-group
+                    label(for='pathSelect') Endpoint:
+                    |                     
+                    select#pathSelect.form-control(name='path')
+                        option(value='/get/temp/inside') /get/temp/inside
+                        |                         
+                        option(value='/get/temp/outside') /get/temp/outside
+                        |                         
+                        option(value='/get/stations') /get/stations
+                        |                         
+                        option(value='/get/route') /get/route
+                        |                         
+                        option(value='/get/position') /get/position
+                        |                         
+                        option(value='/get/weight') /get/weight
+                |                 
+                #busnumberGroup.form-group
+                    label(for='busnumberSelect') Bus Route:
+                    |                     
+                    select#busnumberSelect.form-control(name='busnumber')
+                        option(value='1') 1
+                        |                         
+                        option(value='2') 2
+                        |                         
+                        option(value='3') 3
+                        |                         
+                        option(value='4') 4
+                |                 
+                #busidGroup.form-group
+                    label(for='busidSelect') Bus ID:
+                    |                     
+                    select#busidSelect.form-control(name='busid')
+                        option(value='1') 1
+                        |                         
+                        option(value='2') 2
+                        |                         
+                        option(value='3') 3
+                        |                         
+                        option(value='4') 4
+                        |                         
+                        option(value='4') 5
+                        |                         
+                        option(value='4') 6
+                        |                         
+                        option(value='4') 7
+                        |                         
+                        option(value='4') 8
+                        |                         
+                        option(value='4') 9
+                        |                         
+                        option(value='4') 10
+                        |                         
+                        option(value='4') 11
+                        |                         
+                        option(value='4') 12
+                |                 
+                button#submitBtn.btn.btn-primary.btn-block Submit
+                |                 
+                #loadingCard.card.bg-warning.text-white
+                    .card-body Loading...
+            |             
+            .col-sm-6
+                h2 Response
+                |                 
+                .form-group
+                    label(for='headArea') Head
+                    |                     
+                    textarea#headArea.form-control(name='head', cols='30', rows='6', readonly='')
+                |                 
+                .form-group
+                    label(for='bodyArea') Body
+                    |                     
+                    textarea#bodyArea.form-control(name='body', cols='30', rows='10', readonly='')
+                |                 
+                button#clearBtn.btn.btn-danger.btn-block Clear
+block script
+    script.
+        $('#busnumberGroup').hide();
+            $('#loadingCard').hide();
+            $('#pathSelect').change(() => {
+                $('#busnumberGroup').hide();
+                $('#busidGroup').hide();
+                if ($('#pathSelect').val() == '/get/route') {
+                    $('#busnumberGroup').show();
+                }
+                else if ($('#pathSelect').val() == '/get/temp/inside') {
+                    $('#busidGroup').show();
+                }
+            });
+            $('#submitBtn').click(() => {
+                $('#loadingCard').show();
+                let url = $('#pathSelect').val();
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: {
+                        busnumber: $('#busnumberSelect').val(),
+                        busid: $('#busidSelect').val()
+                    },
+                    beforeSend: (xhr) => {
+                        xhr.setRequestHeader('Client-ID', $('#clientIdField').val());
+                        xhr.setRequestHeader('Client-Secret', $('#clientSecretField').val());
+                    },
+                    success: (data, textStatus, request) => {
+                        $('#headArea').val(request.getAllResponseHeaders());
+                        $('#bodyArea').val(JSON.stringify(data));
+                        $('#loadingCard').hide();
+                    },
+                    error: () => {
+                        alert('Timeout');
+                        $('#loadingCard').hide();
+                    }
+                });
+            });
+            $('#clearBtn').click(() => {
+                $('#headArea').val('');
+                $('#bodyArea').val('');
+            });

@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Client-ID, Client-Secret');
     next();
 });
 
@@ -42,7 +42,7 @@ io.on('connection', function (socket) {
 });
 
 app.get('/', function (req, res) {
-    res.render('home', {});
+    res.render('thinc', {});
 });
 
 app.get('/home', function (req, res) {
@@ -50,11 +50,7 @@ app.get('/home', function (req, res) {
 });
 
 app.get('/explorer', (req, res) => {
-    res.sendFile(__dirname + '/explorer.html');
-});
-
-app.get('/test', function (req, res) {
-    res.render('htmlTemplate', {});
+    res.render('explorer', {});
 });
 
 app.post('/get/temp/inside', validateRequestToken, (req, res) => {
@@ -102,13 +98,6 @@ app.post('/get/route', validateRequestToken, (req, res) => {
             error: "Bus route not found"
         })
     }
-});
-
-app.post('/get/speed', validateRequestToken, function (req, res) {
-    res.json({
-        status: 1,
-        data: busPosition.calculateSpeed()
-    })
 });
 
 app.post('/get/position', validateRequestToken, function (req, res) {
