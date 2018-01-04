@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Popbus API Explorer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Token Getter</h1>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="phoneField">Phone:</label>
+                    <input type="text" class="form-control" id="phoneField">
+                </div>
+                <button class="btn btn-primary btn-block" id="submitBtn">Submit</button>
+                <div class="card bg-warning text-white" id="loadingCard">
+                    <div class="card-body">Loading...</div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="bodyArea">Token:</label>
+                    <textarea name="body" id="bodyArea" cols="30" rows="3" class="form-control" readonly></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#loadingCard').hide();
+        $('#submitBtn').click(() => {
+            $('#loadingCard').show();
+            $.post('/get/token', {
+                phone: $('#phoneField').val()
+            }, data => {
+                if (data.status == 1) {
+                    $('#bodyArea').val('Client-ID: ' + data.client_id + '\nClient-Secret: ' + data.client_secret);
+                }
+                else {
+                    $('#bodyArea').val('Error: ' + data.error);
+                }
+                $('#loadingCard').hide();
+            });
+        })
+    </script>
+</body>
+
+</html>

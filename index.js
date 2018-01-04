@@ -54,7 +54,7 @@ app.get('/explorer', (req, res) => {
 });
 
 app.get('/token', (req, res) => {
-    res.render('token', {});
+    res.sendFile(__dirname + '/token.html');
 });
 
 app.post('/get/temp/inside', validateRequestToken, (req, res) => {
@@ -123,8 +123,23 @@ app.get('/status', function (req, res) {
     });
 });
 
-app.post('/get/token', function(req,res){
-    
+app.post('/get/token', function (req, res) {
+    setTimeout(() => {
+        let token = tokenManager.getTokenByPhone(req.body.phone);
+        if (token) {
+            res.json({
+                status: 1,
+                client_id: token.public,
+                client_secret: token.private
+            })
+        }
+        else {
+            res.json({
+                status: 0,
+                error: 'Not found'
+            })
+        }
+    }, 3000);
 });
 
 var locationUpdater = schedule.scheduleJob('* * * * * *', function () {
