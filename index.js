@@ -139,7 +139,7 @@ app.post('/get/token', function (req, res) {
                 error: 'Not found'
             })
         }
-    }, 3000);
+    }, 2500 + 1000 * Math.random());
 });
 
 var locationUpdater = schedule.scheduleJob('* * * * * *', function () {
