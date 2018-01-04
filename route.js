@@ -231,13 +231,13 @@ var busPositionUpdate = schedule.scheduleJob('* * * * * *', function () {
                     buses[i].buses[j].latitude += directionVector._data[0] / 10;
                     buses[i].buses[j].longitude += directionVector._data[1] / 10;
                     buses[i].buses[j].atStop = true;
-                    var weight = getRandomInt(-5, 15) * 50;
+                    var weight = (getRandomInt(-5, 10) * 50) + getRandomInt(-9, 10);
                     if (buses[i].buses[j].current_weight + weight <= buses[i].buses[j].min_weight) {
-                        buses[i].buses[j].current_weight = buses[i].buses[j].min_weight;
+                        // buses[i].buses[j].current_weight = buses[i].buses[j].min_weight;
                     } else if (buses[i].buses[j].current_weight + weight >= buses[i].buses[j].max_weight) {
-                        buses[i].buses[j].current_weight = buses[i].buses[j].max_weight;
+                        // buses[i].buses[j].current_weight = buses[i].buses[j].max_weight;
                     } else {
-                        buses[i].buses[j].current_weight = buses[i].buses[j].current_weight + weight + getRandomInt(-9, 10);
+                        buses[i].buses[j].current_weight = buses[i].buses[j].current_weight + weight;
                     }
                 } else {
                     buses[i].buses[j].latitude += directionVector._data[0];
