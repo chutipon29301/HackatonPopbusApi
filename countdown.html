@@ -41,11 +41,11 @@
                 let min = Math.floor(timelefttime / 60 / 1000 % 60);
                 let sec = Math.floor(timelefttime / 1000 % 60);
                 let millisec = Math.floor(timelefttime % 1000);
-                let text = hour.toString().padStart(2, '0') + ':' + min.toString().padStart(2, '0') + ':' + sec.toString().padStart(2, '0') + '.' + millisec.toString().padStart(3, '0');
+                let text = hour.toString().padStart(2, '0') + ':' + min.toString().padStart(2, '0') + ':' + sec.toString().padStart(2, '0') + '<span style="color:gray;font-size:.6em;">.' + millisec.toString().padStart(3, '0')+'</span>';
                 while (text[0] == ':' || text[0] == '0') {
                     text = text.substr(1);
                 }
-                $('#time').text(text);
+                $('#time').html(text);
             }
             else {
                 $('#time').text("Time's up");
