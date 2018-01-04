@@ -52,6 +52,10 @@ app.get('/explorer', (req, res) => {
     res.render('explorer', {});
 });
 
+app.get('/token', (req, res) => {
+    res.render('token', {});
+});
+
 app.post('/get/temp/inside', validateRequestToken, (req, res) => {
     let busid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     let index = busid.indexOf(parseInt(req.body.busid));
@@ -60,8 +64,7 @@ app.post('/get/temp/inside', validateRequestToken, (req, res) => {
             status: 1,
             data: temp.getInsideTemp(busPosition.getCurrentWeight()[index].currentWeight - 7000)
         });
-    }
-    else {
+    } else {
         res.json({
             status: 0,
             error: "Bus not found"
@@ -117,6 +120,10 @@ app.get('/status', function (req, res) {
     res.status(200).render('status', {
         locations: busPosition.getCurrentPosition()
     });
+});
+
+app.post('/get/token', function(req,res){
+    
 });
 
 var locationUpdater = schedule.scheduleJob('* * * * * *', function () {
