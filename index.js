@@ -31,6 +31,7 @@ var io = require('socket.io')(http);
 
 http.listen(3000, function () {
     console.log('listening on port 3000');
+    writeLog('Server started')
 });
 
 io.on('connection', function (socket) {
@@ -155,7 +156,7 @@ function validateRequestToken(req, res, next) {
         res.set('X-Request-Limit', token.limit);
         res.set('X-Request-Remaining', remaining);
         let date = new Date();
-        exec('echo "' + date.getHours().toString().padStart(2, '0') + ':' + date.getMinutes().toString().padStart(2, '0') + ':' + date.getSeconds().toString().padStart(2, '0') + ' ' + token.name + ' request ' + req.url + '" >> log/' + date.getFullYear() + (date.getMonth() + 1).toString().padStart(2, '0') + date.getDate().toString().padStart(2, '0') + '.txt');
+        writeLog(token.name + ' request ' + req.url);
         return next();
     }
     setTimeout(() => {
@@ -164,4 +165,8 @@ function validateRequestToken(req, res, next) {
             error: "Request limit reached"
         });
     }, 5000);
-};
+}
+function writeLog(message) {
+    let date = new Date();
+    exec('echo "' + date.getHours().toString().padStart(2, '0') + ':' + date.getMinutes().toString().padStart(2, '0') + ':' + date.getSeconds().toString().padStart(2, '0') + ' ' + message + '" >> log/' + date.getFullYear() + (date.getMonth() + 1).toString().padStart(2, '0') + date.getDate().toString().padStart(2, '0') + '.txt');
+}
