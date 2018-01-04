@@ -138,12 +138,6 @@ module.exports = {
             line: [0, 0, 0, 4, 0, 6]
         },
         {
-            name: 'Faculty of Political Science',
-            latitude: 13.734242,
-            longitude: 100.534033,
-            line: [1, 0, 3, 4, 0, 0]
-        },
-        {
             name: 'Faculty of Law',
             latitude: 13.735137,
             longitude: 100.5284127,
