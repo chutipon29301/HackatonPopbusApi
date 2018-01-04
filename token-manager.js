@@ -5,11 +5,11 @@ function hashToBucket(key) {
 }
 let rawTokens = [
     {
-        name: 'Admin',
+        name: 'Example',
         public: 'wsvnlq0s',
         private: 'iBPqfYnJLjDsjZfK1oPagJ1GCmM8gcyb',
-        limit: 500,
-        remaining: 500
+        limit: 100,
+        remaining: 100
     },
     {
         name: 'G.1',
@@ -159,11 +159,11 @@ let rawTokens = [
         remaining: 30
     },
     {
-        name: 'Spare-2',
+        name: 'Admin',
         public: '0o6raqqm',
         private: 'YHrJofZAho1oK3ePSCytPUNayk2Zw34z',
-        limit: 30,
-        remaining: 30
+        limit: 500,
+        remaining: 500
     }
 ];
 let tokens = new Array(rawTokens.length);
