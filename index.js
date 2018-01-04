@@ -174,12 +174,6 @@ function validateRequestToken(req, res, next) {
         writeLog(token.name + ' request ' + req.url);
         return next();
     }
-    setTimeout(() => {
-        res.json({
-            status: 0,
-            error: "Request limit reached"
-        });
-    }, 5000);
 }
 function writeLog(message) {
     let date = new Date();
