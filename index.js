@@ -61,6 +61,10 @@ app.get('/token', (req, res) => {
     res.sendFile(__dirname + '/token.html');
 });
 
+app.get('/countdown', (req, res) => {
+    res.sendFile(__dirname + '/countdown.html');
+});
+
 app.post('/get/temp/inside', validateRequestToken, (req, res) => {
     let busid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     let index = busid.indexOf(parseInt(req.body.busid));
