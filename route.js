@@ -237,7 +237,7 @@ var busPositionUpdate = schedule.scheduleJob('* * * * * *', function () {
                     } else if (buses[i].buses[j].current_weight + weight >= buses[i].buses[j].max_weight) {
                         buses[i].buses[j].current_weight = buses[i].buses[j].max_weight;
                     } else {
-                        buses[i].buses[j].current_weight = buses[i].buses[j].current_weight + weight + getRandomInt(-9,10);
+                        buses[i].buses[j].current_weight = buses[i].buses[j].current_weight + weight + getRandomInt(-9, 10);
                     }
                 } else {
                     buses[i].buses[j].latitude += directionVector._data[0];
@@ -277,7 +277,7 @@ var getCurrentPostion = function () {
                 id: buses[i].buses[j].id,
                 latitude: buses[i].buses[j].latitude,
                 longitude: buses[i].buses[j].longitude,
-                line: i
+                line: (i + 1)
             });
         }
     }
