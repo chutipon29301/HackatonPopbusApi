@@ -81,6 +81,17 @@ app.post('/get/temp/inside', validateRequestToken, (req, res) => {
     }
 });
 
+app.post('/get/temp/inside/all', validateRequestToken, (req, res) => {
+    let data = [];
+    busPosition.getCurrentWeight().forEach(weight => {
+        data.push(temp.getInsideTemp(weight.currentWeight - 7000));
+    });
+    res.json({
+        status: 1,
+        data: data
+    });
+});
+
 app.post('/get/temp/outside', validateRequestToken, (req, res) => {
     res.json({
         status: 1,
